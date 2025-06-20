@@ -79,6 +79,10 @@ export const ProductDetailsHeader = ({
     setIsAdding(false)
   }
 
+  console.log(product.variants?.find(({ id }) => id === variantId))
+
+  const variant = product.variants?.find(({ id }) => id === variantId)
+
   const variantStock =
     product.variants?.find(({ id }) => id === variantId)?.inventory_quantity ||
     0
@@ -122,12 +126,20 @@ export const ProductDetailsHeader = ({
       {/* Add to Cart */}
       <Button
         onClick={handleAddToCart}
-        disabled={isAdding || !variantStock || !variantHasPrice}
+        disabled={
+          isAdding ||
+          (!variantStock && variant?.manage_inventory) ||
+          !variantHasPrice
+        }
         loading={isAdding}
         className="w-full uppercase mb-4 py-3 flex justify-center"
         size="large"
       >
-        {variantStock && variantHasPrice ? "ADD TO CART" : "OUT OF STOCK"}
+        {isAdding ||
+        (!variantStock && variant?.manage_inventory) ||
+        !variantHasPrice
+          ? "OUT OF STOCK"
+          : "ADD TO CART"}
       </Button>
       {/* Seller message */}
 

@@ -30,7 +30,7 @@ export const ProductDetails = async ({
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <ProductDetailsHeader
         product={product}
         locale={locale}
@@ -40,7 +40,7 @@ export const ProductDetails = async ({
       <ProductPageDetails details={product?.description || ""} />
       <ProductDetailsMeasurements measurements={singleProduct.measurements} />
       <ProductDetailsShipping />
-      <ProductDetailsSeller seller={product?.seller} />
+      {/* <ProductDetailsSeller seller={product?.seller} /> */}
       {/* <ProductDetailsSellerReviews
         reviews={seller.reviews}
       /> */}

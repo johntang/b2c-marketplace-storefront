@@ -25,13 +25,17 @@ export async function generateMetadata({
 
 async function Category({
   params,
+  searchParams,
 }: {
+  searchParams: Promise<{ page: string }>
   params: Promise<{
     category: string
     locale: string
   }>
 }) {
   const { category: handle, locale } = await params
+
+  const { page } = await searchParams
 
   const category = await getCategoryByHandle([handle])
 
@@ -56,7 +60,11 @@ async function Category({
 
       <Suspense fallback={<ProductListingSkeleton />}>
         {!ALGOLIA_ID || !ALGOLIA_SEARCH_KEY ? (
-          <ProductListing category_id={category.id} showSidebar />
+          <ProductListing
+            page={page ? parseInt(page) : 1}
+            category_id={category.id}
+            // showSidebar
+          />
         ) : (
           <AlgoliaProductsListing category_id={category.id} locale={locale} />
         )}

@@ -41,7 +41,7 @@ export const Header = async () => {
   }
 
   return (
-    <header>
+    <header className="sticky top-0 bg-white z-[1000]">
       <div className="flex py-2 lg:px-8 px-4">
         <div className="flex items-center lg:w-1/3">
           <MobileNavbar
@@ -51,14 +51,18 @@ export const Header = async () => {
           <HeadingCategories categories={parentCategories} />
         </div>
         <div className="flex lg:justify-center lg:w-1/3 items-center pl-4 lg:pl-0">
-          <LocalizedClientLink href="/" className="text-2xl font-bold">
-            <Image
+          <LocalizedClientLink
+            href="/"
+            className="text-3xl font-bold tracking-wide"
+          >
+            STARRYAN
+            {/* <Image
               src="/Logo.svg"
               width={126}
               height={40}
               alt="Logo"
               priority
-            />
+            /> */}
           </LocalizedClientLink>
         </div>
         <div className="flex items-center justify-end gap-2 lg:gap-4 w-full lg:w-1/3 py-2">

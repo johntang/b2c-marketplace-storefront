@@ -40,7 +40,7 @@ export const ProductCarousel = ({
                 width={700}
                 height={700}
                 quality={100}
-                className="max-h-[700px] w-full h-auto aspect-square object-cover object-center object-center"
+                className="max-h-[700px] w-full h-auto aspect-square object-cover object-center"
               />
             </div>
           ))}

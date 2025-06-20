@@ -42,7 +42,7 @@ export default async function Home({
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-primary">
-      <Hero
+      {/* <Hero
         image="/images/hero/Image.jpg"
         heading="Snag your style in a flash"
         paragraph="Buy, sell, and discover pre-loved gems from the trendiest brands."
@@ -56,17 +56,17 @@ export default async function Home({
                 : "https://vendor.mercurjs.com",
           },
         ]}
-      />
+      /> */}
       <div className="px-4 lg:px-8 w-full">
         <HomeProductSection heading="trending listings" locale={locale} home />
       </div>
       {/* <HomePopularBrandsSection />*/}
-      <div className="px-4 lg:px-8 w-full">
+      {/* <div className="px-4 lg:px-8 w-full">
         <HomeCategories heading="SHOP BY CATEGORY" />
-      </div>
-      <BannerSection />
-      <ShopByStyleSection />
-      <BlogSection />
+      </div> */}
+      {/* <BannerSection /> */}
+      {/* <ShopByStyleSection /> */}
+      {/* <BlogSection /> */}
     </main>
   )
 }
