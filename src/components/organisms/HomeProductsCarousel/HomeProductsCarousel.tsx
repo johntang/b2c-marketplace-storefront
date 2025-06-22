@@ -7,10 +7,12 @@ export const HomeProductsCarousel = async ({
   locale,
   sellerProducts,
   home,
+  sellerHandle,
 }: {
   locale: string
   sellerProducts: Product[]
   home: boolean
+  sellerHandle?: string
 }) => {
   const {
     response: { products },
@@ -22,17 +24,21 @@ export const HomeProductsCarousel = async ({
     },
   })
 
-  if (!products.length && !sellerProducts.length) return null
+  let filtered = products
+
+  if (sellerHandle) {
+    filtered = products.filter((prod) => prod.seller?.handle === sellerHandle)
+  }
+
+  if (!filtered.length && !sellerProducts.length) return null
 
   return (
     <div className="flex justify-center w-full">
       <Carousel
         align="start"
-        items={(sellerProducts.length ? sellerProducts : products).map(
-          (product) => (
-            <ProductCard key={product.id} product={product} />
-          )
-        )}
+        items={filtered.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       />
     </div>
   )

@@ -14,6 +14,7 @@ export const ProductDetailsSeller = ({ seller }: { seller?: SellerProps }) => {
             <SellerInfo seller={seller} />
             <CollapseIcon className="-rotate-90" />
           </div>
+          <p>{seller.description}</p>
         </LocalizedClientLink>
       </div>
     </div>

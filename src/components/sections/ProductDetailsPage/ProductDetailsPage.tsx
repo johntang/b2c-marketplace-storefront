@@ -40,7 +40,7 @@ export const ProductDetailsPage = async ({
       </div>
       <div className="my-8">
         <HomeProductSection
-          heading="More from this seller"
+          heading="更多商品"
           products={prod.seller?.products}
           seller_handle={prod.seller?.handle}
           locale={locale}

@@ -41,7 +41,7 @@ export const ProductDetails = async ({
       <ProductPageDetails details={product?.description || ""} />
       {/* <ProductDetailsMeasurements measurements={singleProduct.measurements} /> */}
       <ProductDetailsShipping />
-      {/* <ProductDetailsSeller seller={product?.seller} /> */}
+      <ProductDetailsSeller seller={product?.seller} />
       {/* <ProductDetailsSellerReviews
         reviews={seller.reviews}
       /> */}
