@@ -17,5 +17,5 @@ export const getSellerByHandle = async (handle: string) => {
 
       return response as SellerProps
     })
-    .catch(() => [])
+    .catch(() => null)
 }

@@ -19,6 +19,9 @@ import { Badge } from "@/components/atoms"
 import CountrySelector from "@/components/molecules/CountrySelector/CountrySelector"
 import { listRegions } from "@/lib/data/regions"
 import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
+import { getSellerByHandle } from "@/lib/data/seller"
+import { SELLER_HANDLE } from "@/lib/config"
+import { SellerProps } from "@/types/seller"
 
 export const Header = async () => {
   const cart = await retrieveCart().catch(() => null)
@@ -28,6 +31,13 @@ export const Header = async () => {
     const response = await getUserWishlists()
     wishlist = response.wishlists
   }
+
+  let seller: SellerProps | null = null
+  if (SELLER_HANDLE) {
+    seller = await getSellerByHandle(SELLER_HANDLE)
+  }
+
+  console.log(seller)
 
   const regions = await listRegions()
 
@@ -53,16 +63,9 @@ export const Header = async () => {
         <div className="flex lg:justify-center lg:w-1/3 items-center pl-4 lg:pl-0">
           <LocalizedClientLink
             href="/"
-            className="text-3xl font-bold tracking-wide"
+            className="text-2xl font-bold tracking-wide"
           >
-            STARRYAN
-            {/* <Image
-              src="/Logo.svg"
-              width={126}
-              height={40}
-              alt="Logo"
-              priority
-            /> */}
+            {!!seller ? seller.name : "STARRYAN"}
           </LocalizedClientLink>
         </div>
         <div className="flex items-center justify-end gap-2 lg:gap-4 w-full lg:w-1/3 py-2">

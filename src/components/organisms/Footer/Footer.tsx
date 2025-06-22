@@ -1,10 +1,18 @@
 import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
 import footerLinks from "@/data/footerLinks"
+import { SELLER_HANDLE } from "@/lib/config"
+import { getSellerByHandle } from "@/lib/data/seller"
+import { SellerProps } from "@/types/seller"
 
-export function Footer() {
+export async function Footer() {
+  let seller: SellerProps | null = null
+  if (SELLER_HANDLE) {
+    seller = await getSellerByHandle(SELLER_HANDLE)
+  }
+
   return (
     <footer className="bg-primary container">
-      <div className="grid grid-cols-1 lg:grid-cols-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-2">
         {/* Customer Services Column */}
         <div className="p-6 border rounded-sm">
           <h2 className="heading-sm text-primary mb-3 uppercase">
@@ -59,7 +67,9 @@ export function Footer() {
       </div>
 
       <div className="py-6 border rounded-sm ">
-        <p className="text-md text-secondary text-center ">© 2024 Fleek</p>
+        <p className="text-md text-secondary text-center ">
+          © {new Date().getFullYear()} {seller?.name ?? "StarrYan"}
+        </p>
       </div>
     </footer>
   )

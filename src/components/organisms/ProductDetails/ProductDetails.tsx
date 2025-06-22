@@ -8,6 +8,7 @@ import {
   ProductPageDetails,
 } from "@/components/cells"
 import { singleProduct } from "@/data/singleProductMock"
+import { SELLER_HANDLE } from "@/lib/config"
 import { retrieveCustomer } from "@/lib/data/customer"
 import { getUserWishlists } from "@/lib/data/wishlist"
 import { SellerProps } from "@/types/seller"
@@ -38,7 +39,7 @@ export const ProductDetails = async ({
         wishlist={wishlist}
       />
       <ProductPageDetails details={product?.description || ""} />
-      <ProductDetailsMeasurements measurements={singleProduct.measurements} />
+      {/* <ProductDetailsMeasurements measurements={singleProduct.measurements} /> */}
       <ProductDetailsShipping />
       {/* <ProductDetailsSeller seller={product?.seller} /> */}
       {/* <ProductDetailsSellerReviews
