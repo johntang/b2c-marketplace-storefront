@@ -42,8 +42,6 @@ async function CheckoutPageContent({}) {
   const paymentMethods = await listCartPaymentMethods(cart.region?.id ?? "")
   const customer = await retrieveCustomer()
 
-  console.log({ shippingMethods, paymentMethods, customer })
-
   return (
     <PaymentWrapper cart={cart}>
       <main className="container">

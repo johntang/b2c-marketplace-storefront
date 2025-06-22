@@ -139,7 +139,7 @@ export const ProductDetailsHeader = ({
         (!variantStock && variant?.manage_inventory) ||
         !variantHasPrice
           ? "OUT OF STOCK"
-          : "ADD TO CART"}
+          : "加到購物車"}
       </Button>
       {/* Seller message */}
 

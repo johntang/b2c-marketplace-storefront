@@ -37,8 +37,6 @@ export const Header = async () => {
     seller = await getSellerByHandle(SELLER_HANDLE)
   }
 
-  console.log(seller)
-
   const regions = await listRegions()
 
   const wishlistCount = wishlist?.[0]?.products.length || 0

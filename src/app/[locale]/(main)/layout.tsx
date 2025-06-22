@@ -1,15 +1,15 @@
-import { Footer, Header } from '@/components/organisms';
+import { Footer, Header } from "@/components/organisms"
 
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <>
       <Header />
-      {children}
+      <div className="max-w-[1440px] mx-auto">{children}</div>
       <Footer />
     </>
-  );
+  )
 }

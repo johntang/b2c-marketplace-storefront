@@ -2,9 +2,9 @@ import { ProductPageAccordion } from "@/components/molecules"
 
 export const ProductPageDetails = ({ details }: { details: string }) => {
   return (
-    <ProductPageAccordion heading="Product details" defaultOpen={false}>
+    <ProductPageAccordion heading="商品介紹" defaultOpen={false}>
       <div
-        className="product-details"
+        className="product-details whitespace-pre-line"
         dangerouslySetInnerHTML={{
           __html: details,
         }}

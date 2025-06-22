@@ -1,6 +1,9 @@
 import { Button } from "@/components/atoms"
 import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
 import { CollapseIcon } from "@/icons"
+import { SELLER_HANDLE } from "@/lib/config"
+import { getSellerByHandle } from "@/lib/data/seller"
+import { SellerProps } from "@/types/seller"
 import Image from "next/image"
 
 export default async function RootLayout({
@@ -8,6 +11,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  let seller: SellerProps | null = null
+  if (SELLER_HANDLE) {
+    seller = await getSellerByHandle(SELLER_HANDLE)
+  }
+
   return (
     <>
       <header>
@@ -22,13 +30,7 @@ export default async function RootLayout({
           </div>
           <div className="flex items-center justify-center pl-4 lg:pl-0 w-full">
             <LocalizedClientLink href="/" className="text-2xl font-bold">
-              <Image
-                src="/Logo.svg"
-                width={126}
-                height={40}
-                alt="Logo"
-                priority
-              />
+              {!!seller ? seller.name : "STARRYAN"}
             </LocalizedClientLink>
           </div>
         </div>
