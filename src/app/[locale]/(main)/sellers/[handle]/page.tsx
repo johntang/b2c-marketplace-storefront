@@ -7,10 +7,14 @@ import { SellerProps } from "@/types/seller"
 
 export default async function SellerPage({
   params,
+  searchParams,
 }: {
+  searchParams: Promise<{ page: string }>
   params: Promise<{ handle: string; locale: string }>
 }) {
   const { handle, locale } = await params
+
+  const { page } = await searchParams
 
   const seller = (await getSellerByHandle(handle)) as SellerProps
 
@@ -26,8 +30,14 @@ export default async function SellerPage({
 
   return (
     <main className="container">
+      {/* <img
+        className="w-full max-h-[250px]"
+        src="https://cdn01.pinkoi.com/store/starryan/banner/1/1200x245.avif"
+      ></img> */}
+
       <SellerPageHeader header seller={seller} user={user} />
       <SellerTabs
+        page={page ? parseInt(page) : 1}
         tab={tab}
         seller_id={seller.id}
         seller_handle={seller.handle}

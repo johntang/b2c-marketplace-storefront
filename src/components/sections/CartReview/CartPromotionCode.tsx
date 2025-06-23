@@ -31,9 +31,9 @@ export default function CartPromotionCode({
     <div>
       <Heading
         level="h2"
-        className="flex flex-row text-3xl-regular gap-x-2 items-baseline items-center"
+        className="flex flex-row text-3xl-regular gap-x-2 items-center"
       >
-        Promotion codes
+        優惠碼
       </Heading>
       <div>
         {cart?.promotions?.map((promo) => (
@@ -46,7 +46,7 @@ export default function CartPromotionCode({
         ))}
       </div>
       <Input
-        placeholder="Enter your promotion code"
+        placeholder="輸入優惠碼"
         value={promotionCode}
         onChange={(e) => setPromotionCode(e.target.value)}
       />
@@ -58,7 +58,7 @@ export default function CartPromotionCode({
           loading={isLoading}
           variant="tonal"
         >
-          Use promotion code
+          使用優惠碼
         </Button>
       </div>
     </div>

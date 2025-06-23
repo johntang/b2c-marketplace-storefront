@@ -19,7 +19,7 @@ export const CartSummary = ({
     <div>
       <div className="space-y-4 label-md text-secondary mb-4">
         <div className="flex justify-between">
-          <span>Items:</span>
+          <span>小計:</span>
           <span className="text-primary">
             {convertToLocale({
               amount: item_total,
@@ -28,7 +28,7 @@ export const CartSummary = ({
           </span>
         </div>
         <div className="flex justify-between">
-          <span>Tax:</span>
+          <span>稅:</span>
           <span className="text-primary">
             {convertToLocale({
               amount: tax,
@@ -37,7 +37,7 @@ export const CartSummary = ({
           </span>
         </div>
         <div className="flex justify-between">
-          <span>Delivery:</span>
+          <span>運費:</span>
           <span className="text-primary">
             {convertToLocale({
               amount: shipping_total,
@@ -46,7 +46,7 @@ export const CartSummary = ({
           </span>
         </div>
         <div className="flex justify-between border-t pt-4 items-center">
-          <span>Total:</span>
+          <span>總計:</span>
           <span className="label-xl text-primary">
             {convertToLocale({
               amount: total,

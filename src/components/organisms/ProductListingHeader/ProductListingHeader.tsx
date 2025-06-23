@@ -19,7 +19,7 @@ export const ProductListingHeader = ({ total }: { total: number }) => {
 
   return (
     <div className="flex justify-between w-full items-center">
-      <div>{total} listings</div>
+      <div>{total} 件商品</div>
       {/* <div className='hidden md:flex gap-2 items-center'>
         Sort by:{' '}
         <SelectField

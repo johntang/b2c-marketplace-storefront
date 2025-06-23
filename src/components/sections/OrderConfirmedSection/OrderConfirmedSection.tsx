@@ -22,12 +22,12 @@ export const OrderConfirmedSection = ({
               level="h1"
               className="flex flex-col gap-y-3 text-ui-fg-base text-3xl mb-4"
             >
-              <span>Thank you!</span>
-              <span>Your order was placed successfully.</span>
+              <span>感謝</span>
+              <span>已成功落單</span>
             </Heading>
 
             <Text>
-              We have sent the order confirmation details to{" "}
+              我們已將確認電郵發送至{" "}
               <span
                 className="text-ui-fg-medium-plus font-semibold"
                 data-testid="order-email"

@@ -13,8 +13,10 @@ export const SellerTabs = ({
   seller_id,
   locale,
   currency_code,
+  page = 1,
 }: {
   tab: string
+  page: number
   seller_handle: string
   seller_id: string
   locale: string
@@ -34,7 +36,7 @@ export const SellerTabs = ({
       <TabsContent value="products" activeTab={tab}>
         <Suspense fallback={<ProductListingSkeleton />}>
           {!ALGOLIA_ID || !ALGOLIA_SEARCH_KEY ? (
-            <ProductListing showSidebar seller_id={seller_id} />
+            <ProductListing page={page} showSidebar seller_id={seller_id} />
           ) : (
             <AlgoliaProductsListing
               locale={locale}

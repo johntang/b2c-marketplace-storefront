@@ -19,8 +19,6 @@ async function AllCategories({
 
   const { page } = await searchParams
 
-  console.log(page)
-
   const breadcrumbsItems = [
     {
       path: "/",

@@ -4,7 +4,6 @@ import { CollapseIcon } from "@/icons"
 import { SELLER_HANDLE } from "@/lib/config"
 import { getSellerByHandle } from "@/lib/data/seller"
 import { SellerProps } from "@/types/seller"
-import Image from "next/image"
 
 export default async function RootLayout({
   children,
@@ -24,7 +23,7 @@ export default async function RootLayout({
             <LocalizedClientLink href="/cart">
               <Button variant="tonal" className="flex items-center gap-2">
                 <CollapseIcon className="rotate-90" />
-                <span className="hidden lg:block">Back to cart</span>
+                <span className="hidden lg:block">回到購物車</span>
               </Button>
             </LocalizedClientLink>
           </div>

@@ -51,7 +51,7 @@ export const CartDropdownItem = ({
             </p>
           ))}
           <p>
-            Quantity: <span className="text-primary">{item.quantity}</span>
+            數量: <span className="text-primary">{item.quantity}</span>
           </p>
         </div>
         <div className="pt-2 flex items-center gap-2 mt-4 lg:mt-0">

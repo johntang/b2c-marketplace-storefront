@@ -60,12 +60,12 @@ export const CartAddressSection = ({
           level="h2"
           className="flex flex-row text-3xl-regular gap-x-2 items-baseline items-center"
         >
-          {!isOpen && <CheckCircleSolid />} Shipping Address
+          {!isOpen && <CheckCircleSolid />} 寄件地址
         </Heading>
         {!isOpen && isAddress && (
           <Text>
             <Button onClick={handleEdit} variant="tonal">
-              Edit
+              修改
             </Button>
           </Text>
         )}
@@ -89,7 +89,7 @@ export const CartAddressSection = ({
               data-testid="submit-address-button"
               variant="tonal"
             >
-              Save
+              儲存
             </Button>
             <ErrorMessage
               error={message !== "success" && message}
@@ -131,7 +131,7 @@ export const CartAddressSection = ({
         {isAddress && !searchParams.get("step") && (
           <LocalizedClientLink href="/checkout?step=delivery">
             <Button className="mt-6" variant="tonal">
-              Continue to Delivery
+              輸入運費
             </Button>
           </LocalizedClientLink>
         )}

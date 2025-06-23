@@ -66,7 +66,7 @@ export const CartDropdown = ({
       </LocalizedClientLink>
       <Dropdown show={open}>
         <div className="lg:w-[460px] shadow-lg">
-          <h3 className="uppercase heading-md border-b p-4">Shopping cart</h3>
+          <h3 className="uppercase heading-md border-b p-4">購物車</h3>
           <div className="p-4">
             {Boolean(cartItemsCount) ? (
               <div>
@@ -81,18 +81,16 @@ export const CartDropdown = ({
                 </div>
                 <div className="pt-4">
                   <div className="text-secondary flex justify-between items-center">
-                    Total <p className="label-xl text-primary">{total}</p>
+                    總計 <p className="label-xl text-primary">{total}</p>
                   </div>
                   <LocalizedClientLink href="/cart">
-                    <Button className="w-full mt-4 py-3">Go to cart</Button>
+                    <Button className="w-full mt-4 py-3">查看購物車</Button>
                   </LocalizedClientLink>
                 </div>
               </div>
             ) : (
               <div className="px-8">
-                <h4 className="heading-md uppercase text-center">
-                  Your shopping cart is empty
-                </h4>
+                <h4 className="heading-md uppercase text-center">未有購物車</h4>
                 <p className="text-lg text-center py-4">
                   Are you looging for inspiration?
                 </p>

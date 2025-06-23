@@ -14,7 +14,7 @@ export const Cart = async () => {
       </div>
       <div className="lg:col-span-2"></div>
       <div className="col-span-12 lg:col-span-4">
-        <div className="w-full mb-6 border rounded-sm p-4">
+        <div className="w-full mb-2 border rounded-sm p-4">
           <CartPromotionCode cart={cart} />
         </div>
         <div className="border rounded-sm p-4 h-fit">
@@ -27,7 +27,7 @@ export const Cart = async () => {
           />
           <LocalizedClientLink href="/checkout?step=address">
             <Button className="w-full py-3 flex justify-center items-center">
-              Go to checkout
+              前往付款
             </Button>
           </LocalizedClientLink>
         </div>

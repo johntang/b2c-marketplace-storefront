@@ -125,12 +125,12 @@ const CartPaymentSection = ({
           className="flex flex-row text-3xl-regular gap-x-2 items-baseline items-center"
         >
           {!isOpen && paymentReady && <CheckCircleSolid />}
-          Payment
+          付款
         </Heading>
         {!isOpen && (
           <Text>
             <Button onClick={handleEdit} variant="tonal">
-              Edit
+              修改
             </Button>
           </Text>
         )}
@@ -170,13 +170,13 @@ const CartPaymentSection = ({
           {paidByGiftcard && (
             <div className="flex flex-col w-1/3">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Payment method
+                付款方式
               </Text>
               <Text
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Gift card
+                禮品卡
               </Text>
             </div>
           )}
@@ -196,8 +196,8 @@ const CartPaymentSection = ({
             }
           >
             {!activeSession && isStripeFunc(selectedPaymentMethod)
-              ? " Enter card details"
-              : "Continue to review"}
+              ? " 輸入卡資料"
+              : "覆核"}
           </Button>
         </div>
 
@@ -206,7 +206,7 @@ const CartPaymentSection = ({
             <div className="flex items-start gap-x-1 w-full">
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Payment method
+                  付款方式
                 </Text>
                 <Text
                   className="txt-medium text-ui-fg-subtle"
@@ -218,7 +218,7 @@ const CartPaymentSection = ({
               </div>
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Payment details
+                  付款詳情
                 </Text>
                 <div
                   className="flex gap-2 txt-medium text-ui-fg-subtle items-center"
@@ -240,13 +240,13 @@ const CartPaymentSection = ({
           ) : paidByGiftcard ? (
             <div className="flex flex-col w-1/3">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Payment method
+                付款方式
               </Text>
               <Text
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Gift card
+                禮品卡
               </Text>
             </div>
           ) : null}

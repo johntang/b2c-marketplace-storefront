@@ -4,10 +4,11 @@ import Image from "next/image"
 import { Button } from "@/components/atoms"
 import { HttpTypes } from "@medusajs/types"
 
-import { BaseHit, Hit } from "instantsearch.js"
-import clsx from "clsx"
 import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
 import { convertToLocale } from "@/lib/helpers/money"
+import { SellerProps } from "@/types/seller"
+import clsx from "clsx"
+import { BaseHit, Hit } from "instantsearch.js"
 
 const getRegionPrice = (product: any, currency_code: string) => {
   const variant = product.variants?.find((variant: any) => {
@@ -59,7 +60,9 @@ export const ProductCard = ({
   product,
   currency_code,
 }: {
-  product: Hit<HttpTypes.StoreProduct> | Partial<Hit<BaseHit>>
+  product:
+    | Hit<HttpTypes.StoreProduct & { seller?: SellerProps }>
+    | Partial<Hit<BaseHit>>
   currency_code?: string
 }) => {
   const price = getRegionPrice(product, currency_code || "usd")
@@ -98,24 +101,28 @@ export const ProductCard = ({
         </LocalizedClientLink>
         <LocalizedClientLink href={`/products/${product.handle}`}>
           <Button className="absolute rounded-sm bg-action text-action-on-primary h-auto lg:h-[48px] lg:group-hover:block hidden w-full uppercase bottom-1 z-10">
-            See More
+            查看更多
           </Button>
         </LocalizedClientLink>
       </div>
-      <LocalizedClientLink href={`/products/${product.handle}`}>
-        <div className="flex justify-between p-4">
-          <div className="w-full">
-            <h3 className="heading-sm truncate">{product.title}</h3>
-            <div className="flex items-center gap-2 mt-2">
-              <p className="font-medium">{price.calculated_price}</p>
-              {price.original_price &&
-                price.calculated_price !== price.original_price && (
-                  <p className="text-sm text-gray-500 line-through">
-                    {price.original_price}
-                  </p>
-                )}
-            </div>
-            {/* <div className="flex items-center gap-2 mt-2">
+      <div className="flex justify-between p-4">
+        <div className="w-full">
+          <h3 className="heading-sm truncate">{product.title}</h3>
+
+          <LocalizedClientLink href={`/sellers/${product.seller.handle}`}>
+            <p className="hover:underline mt-2">{product.seller.name}</p>
+          </LocalizedClientLink>
+
+          <div className="flex items-center gap-2 ">
+            <p className="font-medium">{price.calculated_price}</p>
+            {price.original_price &&
+              price.calculated_price !== price.original_price && (
+                <p className="text-sm text-gray-500 line-through">
+                  {price.original_price}
+                </p>
+              )}
+          </div>
+          {/* <div className="flex items-center gap-2 mt-2">
               <p className="font-medium">
                 {sellerVariantPrice?.calculated_price ||
                   variantPrice?.calculated_price}
@@ -134,9 +141,8 @@ export const ProductCard = ({
                     </p>
                   )}
             </div> */}
-          </div>
         </div>
-      </LocalizedClientLink>
+      </div>
     </div>
   )
 }

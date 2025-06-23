@@ -145,7 +145,7 @@ const StripePaymentButton = ({
         loading={submitting}
         className="w-full"
       >
-        Place order
+        下單
       </Button>
       <ErrorMessage
         error={errorMessage}
@@ -171,7 +171,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   return (
     <>
       <Button disabled={notReady} onClick={handlePayment} className="w-full">
-        Place order
+        下單
       </Button>
       <ErrorMessage
         error={errorMessage}

@@ -51,7 +51,7 @@ const CountrySelect = forwardRef<
 
   return (
     <label className="label-md">
-      <p className="mb-2">Country</p>
+      <p className="mb-2">國家</p>
       <Listbox onChange={handleSelect} value={props.value}>
         <div className="relative">
           <Listbox.Button

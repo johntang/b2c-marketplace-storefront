@@ -199,12 +199,12 @@ const CartShippingMethodsSection: React.FC<ShippingProps> = ({
           {!isOpen && (cart.shipping_methods?.length ?? 0) > 0 && (
             <CheckCircleSolid />
           )}
-          Delivery
+          派送
         </Heading>
         {!isOpen && (
           <Text>
             <Button onClick={handleEdit} variant="tonal">
-              Edit
+              修改
             </Button>
           </Text>
         )}
@@ -235,7 +235,7 @@ const CartShippingMethodsSection: React.FC<ShippingProps> = ({
                             {({ open }) => (
                               <>
                                 <span className="block truncate">
-                                  Choose delivery option
+                                  選擇派送方式
                                 </span>
                                 <ChevronUpDown
                                   className={clx(
@@ -317,7 +317,7 @@ const CartShippingMethodsSection: React.FC<ShippingProps> = ({
               disabled={!cart.shipping_methods?.[0]}
               loading={isLoadingPrices}
             >
-              Continue to payment
+              前往付款
             </Button>
           </div>
         </>
@@ -329,7 +329,7 @@ const CartShippingMethodsSection: React.FC<ShippingProps> = ({
                 {cart.shipping_methods?.map((method) => (
                   <div key={method.id} className="mb-4 border rounded-md p-4">
                     <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                      Method
+                      付款方式
                     </Text>
                     <Text className="txt-medium text-ui-fg-subtle">
                       {method.name}{" "}

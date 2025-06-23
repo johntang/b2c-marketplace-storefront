@@ -24,7 +24,7 @@ export const NavbarSearch = () => {
     <form className="flex items-center" method="POST" onSubmit={submitHandler}>
       <Input
         icon={<SearchIcon />}
-        placeholder="Search product"
+        placeholder="搜尋商品"
         value={search}
         changeValue={setSearch}
       />
