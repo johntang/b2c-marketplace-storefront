@@ -30,11 +30,6 @@ export default async function SellerPage({
 
   return (
     <main className="container">
-      {/* <img
-        className="w-full max-h-[250px]"
-        src="https://cdn01.pinkoi.com/store/starryan/banner/1/1200x245.avif"
-      ></img> */}
-
       <SellerPageHeader header seller={seller} user={user} />
       <SellerTabs
         page={page ? parseInt(page) : 1}

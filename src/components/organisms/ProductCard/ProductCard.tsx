@@ -74,7 +74,7 @@ export const ProductCard = ({
   return (
     <div
       className={clsx(
-        "relative group border rounded-sm flex flex-col justify-between p-1 w-full lg:w-[calc(25%-1rem)] min-w-[100px]"
+        "relative group border rounded-sm flex flex-col justify-between p-1 w-full min-w-[100px]"
       )}
     >
       <div className="relative w-full h-full bg-primary aspect-square">
@@ -110,7 +110,9 @@ export const ProductCard = ({
           <h3 className="heading-sm truncate">{product.title}</h3>
 
           <LocalizedClientLink href={`/sellers/${product.seller.handle}`}>
-            <p className="hover:underline mt-2">{product.seller.name}</p>
+            <p className="hover:underline mt-2 text-md">
+              {product.seller.name}
+            </p>
           </LocalizedClientLink>
 
           <div className="flex items-center gap-2 ">

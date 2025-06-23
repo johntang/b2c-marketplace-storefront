@@ -10,7 +10,7 @@ export const SellerInfo = ({
   seller: SellerProps
   header?: boolean
 }) => {
-  const { photo, name, reviews } = seller
+  const { photo, name, reviews, description } = seller
 
   const reviewCount = reviews
     ? reviews?.filter((rev) => rev !== null).length
@@ -23,28 +23,52 @@ export const SellerInfo = ({
           .reduce((sum, r) => sum + r?.rating || 0, 0) / reviewCount
       : 0
 
+  console.log(seller)
+
   return (
     <>
-      <div className="flex gap-4 w-full">
-        <div className="relative h-12 w-12 overflow-hidden rounded-sm">
-          <SellerAvatar photo={photo} size={56} alt={name} />
-        </div>
-        <div className="w-[90%]">
-          <h3 className="heading-sm text-primary">{name}</h3>
-          <div className="flex items-center gap-2 border-b pb-4">
-            <StarRating starSize={16} rate={rating || 0} />
-            <span className="text-md text-secondary">
-              {reviewCount} reviews
-            </span>
+      <div className="flex gap-4 w-full flex-col">
+        {!!seller.banner && <img src={seller.banner}></img>}
+
+        <div className="flex gap-4 w-full">
+          <div
+            style={{ flex: "0 0 100px" }}
+            className="relative h-[100px] rounded-sm aspect-square"
+          >
+            <SellerAvatar photo={photo} size={100} alt={name} />
+
+            <div className="flex justify-center">
+              {!!seller.ig && (
+                <a href={seller.ig} target="_blank">
+                  <i className="fa-brands fa-instagram text-2xl"></i>
+                </a>
+              )}
+            </div>
           </div>
-          <div className="mt-4">
-            {!header &&
-              reviews
-                ?.filter((rev) => rev !== null)
-                .slice(-3)
-                .map((review) => (
-                  <SellerReview key={review.id} review={review} />
-                ))}
+          <div className="grow">
+            <h3 className="heading-sm text-primary flex gap-2">{name}</h3>
+            <div className="flex items-center gap-2 border-b pb-4">
+              <StarRating starSize={16} rate={rating || 0} />
+              <span className="text-md text-secondary">
+                {reviewCount} reviews
+              </span>
+            </div>
+            <div className="mt-4">
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: seller.description,
+                }}
+                className="label-sm my-5"
+              />
+
+              {!header &&
+                reviews
+                  ?.filter((rev) => rev !== null)
+                  .slice(-3)
+                  .map((review) => (
+                    <SellerReview key={review.id} review={review} />
+                  ))}
+            </div>
           </div>
         </div>
       </div>

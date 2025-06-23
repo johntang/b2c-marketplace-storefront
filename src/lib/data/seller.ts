@@ -5,11 +5,14 @@ export const getSellerByHandle = async (handle: string) => {
   return sdk.client
     .fetch<{ seller: SellerProps }>(`/store/seller/${handle}`, {
       query: {
-        fields: "+created_at,+rating,+email,*reviews,*reviews.customer",
+        fields:
+          "+created_at,+rating,+email,*reviews,*reviews.customer,+description,+ig,+facebook,+photo,+banner",
       },
       cache: "force-cache",
     })
     .then(({ seller }) => {
+      console.log(seller)
+
       const response = {
         ...seller,
         reviews: seller.reviews?.filter((item) => item !== null) ?? [],

@@ -9,13 +9,12 @@ export const ProductDetailsSeller = ({ seller }: { seller?: SellerProps }) => {
   return (
     <div className="border rounded-sm">
       <div className="p-4">
-        <LocalizedClientLink href={`/sellers/${seller.handle}`}>
-          <div className="flex justify-between">
-            <SellerInfo seller={seller} />
+        <div className="flex justify-between">
+          <SellerInfo seller={seller} />
+          <LocalizedClientLink href={`/sellers/${seller.handle}`}>
             <CollapseIcon className="-rotate-90" />
-          </div>
-          <p>{seller.description}</p>
-        </LocalizedClientLink>
+          </LocalizedClientLink>
+        </div>
       </div>
     </div>
   )

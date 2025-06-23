@@ -4,6 +4,8 @@ import "./globals.css"
 import { SELLER_HANDLE } from "@/lib/config"
 import { SellerProps } from "@/types/seller"
 import { getSellerByHandle } from "@/lib/data/seller"
+import Head from "next/head"
+import Script from "next/script"
 
 const funnelDisplay = Funnel_Display({
   variable: "--font-funnel-sans",
@@ -73,6 +75,9 @@ export default async function RootLayout({
   const { locale } = await params
   return (
     <html lang={locale} className="">
+      <Script src="/assets/fontawesome/js/brands.js" defer />
+      <Script defer src="/assets/fontawesome/js/solid.js"></Script>
+      <Script defer src="/assets/fontawesome/js/fontawesome.js"></Script>
       <body
         className={`${funnelDisplay.className} antialiased bg-primary text-secondary`}
       >

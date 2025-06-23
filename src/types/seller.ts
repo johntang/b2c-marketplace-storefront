@@ -19,4 +19,7 @@ export type SellerProps = SellerAddress & {
   products?: Product[]
   email?: string
   store_status?: "ACTIVE" | "SUSPENDED" | "INACTIVE"
+  ig?: string
+  facebook?: string
+  banner?: string
 }

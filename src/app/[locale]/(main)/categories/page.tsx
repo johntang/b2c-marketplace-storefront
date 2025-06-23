@@ -33,10 +33,6 @@ async function AllCategories({
       <div className="hidden md:block mb-2">
         <Breadcrumbs items={breadcrumbsItems} />
       </div>
-      {/* <img
-        className="w-full"
-        src="https://cdn01.pinkoi.com/store/starryan/banner/1/1200x245.avif"
-      /> */}
 
       <h1 className="heading-xl uppercase">所有商品</h1>
 
