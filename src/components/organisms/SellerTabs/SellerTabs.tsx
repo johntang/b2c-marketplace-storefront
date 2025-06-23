@@ -16,7 +16,7 @@ export const SellerTabs = ({
   page = 1,
 }: {
   tab: string
-  page: number
+  page?: number
   seller_handle: string
   seller_id: string
   locale: string
