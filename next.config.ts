@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "pub-c03190477d334353976c337abb81f268.r2.dev",
+        hostname: process.env.CLOUDFLARE_R2_DOMAIN ?? "",
       },
       {
         protocol: "https",
