@@ -23,8 +23,6 @@ export const SellerInfo = ({
           .reduce((sum, r) => sum + r?.rating || 0, 0) / reviewCount
       : 0
 
-  console.log(seller)
-
   return (
     <>
       <div className="flex gap-4 w-full flex-col">

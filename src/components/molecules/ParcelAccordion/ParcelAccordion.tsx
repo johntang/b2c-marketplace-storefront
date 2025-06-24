@@ -1,12 +1,12 @@
-"use client"
-import { Button, Card } from "@/components/atoms"
-import { CollapseIcon } from "@/icons"
-import { cn } from "@/lib/utils"
-import { useEffect, useRef, useState } from "react"
-import { OrderProductListItem } from "@/components/cells"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { format } from "date-fns"
-import { convertToLocale } from "@/lib/helpers/money"
+"use client";
+import { Button, Card } from "@/components/atoms";
+import { CollapseIcon } from "@/icons";
+import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
+import { OrderProductListItem } from "@/components/cells";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { format } from "date-fns";
+import { convertToLocale } from "@/lib/helpers/money";
 
 export const ParcelAccordion = ({
   orderId,
@@ -17,46 +17,46 @@ export const ParcelAccordion = ({
   items,
   defaultOpen = false,
 }: {
-  orderId: string
-  orderDisplayId: string
-  createdAt: string | Date
-  total: number
-  currency_code?: string
-  items: any[]
-  defaultOpen?: boolean
+  orderId: string;
+  orderDisplayId: string;
+  createdAt: string | Date;
+  total: number;
+  currency_code?: string;
+  items: any[];
+  defaultOpen?: boolean;
 }) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
-  const [height, setHeight] = useState(0)
-  const contentRef = useRef<HTMLUListElement>(null)
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [height, setHeight] = useState(0);
+  const contentRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     setTimeout(() => {
       if (contentRef.current) {
-        setHeight(contentRef.current.scrollHeight)
+        setHeight(contentRef.current.scrollHeight);
       }
-    }, 100)
-  }, [])
+    }, 100);
+  }, []);
 
   const openHandler = () => {
-    setIsOpen((prev) => !prev)
-  }
+    setIsOpen((prev) => !prev);
+  };
 
   return (
     <>
       <div
-        className="grid grid-cols-2 sm:grid-cols-5 text-secondary border border-primary bg-component-secondary py-6 px-4 rounded-sm w-full cursor-pointer"
+        className="grid grid-cols-2 sm:grid-cols-5 text-secondary border border-primary bg-component-secondary py-6 px-4 rounded-sm w-full cursor-pointer mb-2"
         onClick={openHandler}
       >
         <div className="sm:col-span-4 flex flex-col lg:flex-row lg:items-center justify-between lg:gap-4 sm:pr-10">
-          <h2 className="heading-sm truncate">ORDER {orderDisplayId}</h2>
+          <h2 className="heading-sm truncate">訂單 {orderDisplayId}</h2>
           <h2 className="label-md">
-            Order date:{" "}
+            日期:{" "}
             <span className="text-primary lg:block xl:inline-block">
               {format(createdAt || "", "yyyy-MM-dd")}
             </span>
           </h2>
           <h2 className="label-md">
-            Total:{" "}
+            總計:{" "}
             <span className="text-primary lg:block xl:inline-block">
               {convertToLocale({ amount: total, currency_code })}
             </span>
@@ -65,7 +65,7 @@ export const ParcelAccordion = ({
         <div className="col-span-1 flex justify-end items-center gap-4">
           <LocalizedClientLink href={`/user/orders/${orderId}`}>
             <Button variant="tonal" onClick={(e) => e.stopPropagation()}>
-              <span className="label-md text-primary">VIEW ORDER</span>
+              <span className="label-md text-primary">查看訂單</span>
             </Button>
           </LocalizedClientLink>
           <CollapseIcon
@@ -99,5 +99,5 @@ export const ParcelAccordion = ({
         </ul>
       </Card>
     </>
-  )
-}
+  );
+};

@@ -1,32 +1,32 @@
-import { UserNavigation } from "@/components/molecules"
-import { retrieveCustomer } from "@/lib/data/customer"
-import { Avatar, Button, Card } from "@/components/atoms"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { ArrowLeftIcon } from "@/icons"
-import { OrderProductListItem } from "@/components/cells"
-import { redirect } from "next/navigation"
-import { format } from "date-fns"
-import { OrderAddresses } from "@/components/cells"
-import { retrieveOrder } from "@/lib/data/orders"
-import { Chat } from "@/components/organisms/Chat/Chat"
-import { SellerProps } from "@/types/seller"
-import { HttpTypes } from "@medusajs/types"
+import { UserNavigation } from "@/components/molecules";
+import { retrieveCustomer } from "@/lib/data/customer";
+import { Avatar, Button, Card } from "@/components/atoms";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { ArrowLeftIcon } from "@/icons";
+import { OrderProductListItem } from "@/components/cells";
+import { redirect } from "next/navigation";
+import { format } from "date-fns";
+import { OrderAddresses } from "@/components/cells";
+import { retrieveOrder } from "@/lib/data/orders";
+import { Chat } from "@/components/organisms/Chat/Chat";
+import { SellerProps } from "@/types/seller";
+import { HttpTypes } from "@medusajs/types";
 
 export default async function UserPage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = await params
+  const { id } = await params;
 
-  const user = await retrieveCustomer()
+  const user = await retrieveCustomer();
   const order = (await retrieveOrder(id)) as HttpTypes.StoreOrder & {
-    seller: SellerProps
-  }
+    seller: SellerProps;
+  };
 
-  if (!user || !order) return redirect("/user")
+  if (!user || !order) return redirect("/user");
 
-  const { seller } = order
+  const { seller } = order;
 
   return (
     <main className="container">
@@ -39,12 +39,12 @@ export default async function UserPage({
               className="label-md text-action-on-secondary uppercase flex items-center gap-2"
             >
               <ArrowLeftIcon className="size-4" />
-              All orders
+              所有訂單
             </Button>
           </LocalizedClientLink>
-          <h1 className="heading-md uppercase">Order #{order.display_id}</h1>
+          <h1 className="heading-md uppercase">訂單 #{order.display_id}</h1>
           <div className="w-full max-w-full">
-            <div className="flex items-center justify-between text-secondary border border-primary py-4 px-4 rounded-sm w-full">
+            <div className="flex items-center justify-between text-secondary border border-primary py-4 px-4 rounded-sm w-full mb-2">
               <div className="flex items-center gap-2">
                 <Avatar src={seller.photo} size="large" />
                 <h2 className="heading-sm uppercase  text-primary">
@@ -66,15 +66,15 @@ export default async function UserPage({
                 />
               </div>
             </div>
-            <div className="flex items-center justify-between text-secondary border border-primary bg-component-secondary py-6 px-4 rounded-sm w-full ">
+            <div className="flex items-center justify-between text-secondary border border-primary bg-component-secondary py-6 px-4 rounded-sm w-full mb-2">
               <div className="flex items-center">
                 <h2 className="heading-sm uppercase text-secondary">
-                  Status: <span className="text-primary">{order.status}</span>
+                  狀態: <span className="text-primary">{order.status}</span>
                 </h2>
               </div>
               <div className="flex justify-end">
                 <h2 className="label-md text-secondary">
-                  Order date:{" "}
+                  下單日期:{" "}
                   <span className="text-primary">
                     {format(order.created_at || "", "yyyy-MM-dd")}
                   </span>
@@ -95,5 +95,5 @@ export default async function UserPage({
         </div>
       </div>
     </main>
-  )
+  );
 }

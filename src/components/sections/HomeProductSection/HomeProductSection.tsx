@@ -21,8 +21,6 @@ export const HomeProductSection = async ({
 }) => {
   const currency_code = (await getRegion(locale))?.currency_code || "usd"
 
-  console.log({ products })
-
   return (
     <section className="py-8 w-full">
       <h2 className="mb-6 heading-lg font-bold tracking-tight uppercase">

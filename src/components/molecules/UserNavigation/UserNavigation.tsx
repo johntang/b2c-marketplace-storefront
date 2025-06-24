@@ -1,28 +1,33 @@
-"use client"
-import { Card, Divider, LogoutButton, NavigationItem } from "@/components/atoms"
-import { usePathname } from "next/navigation"
+"use client";
+import {
+  Card,
+  Divider,
+  LogoutButton,
+  NavigationItem,
+} from "@/components/atoms";
+import { usePathname } from "next/navigation";
 
 const navigationItems = [
   {
-    label: "Orders",
+    label: "訂單",
     href: "/user/orders",
   },
   {
-    label: "Addresses",
+    label: "地址",
     href: "/user/addresses",
   },
-  {
-    label: "Reviews",
-    href: "/user/reviews",
-  },
-  {
-    label: "Wishlist",
-    href: "/user/wishlist",
-  },
-]
+  // {
+  //   label: "Reviews",
+  //   href: "/user/reviews",
+  // },
+  // {
+  //   label: "Wishlist",
+  //   href: "/user/wishlist",
+  // },
+];
 
 export const UserNavigation = () => {
-  const path = usePathname()
+  const path = usePathname();
 
   return (
     <Card className="h-min">
@@ -40,9 +45,9 @@ export const UserNavigation = () => {
         href={"/user/settings"}
         active={path === "/user/settings"}
       >
-        Settings
+        設定
       </NavigationItem>
       <LogoutButton className="w-full text-left" />
     </Card>
-  )
-}
+  );
+};

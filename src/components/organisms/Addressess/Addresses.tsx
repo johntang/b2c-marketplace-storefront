@@ -1,32 +1,32 @@
-"use client"
-import { Button, Card } from "@/components/atoms"
-import { AddressForm, Modal } from "@/components/molecules"
-import { emptyDefaultAddressValues } from "@/components/molecules/AddressForm/AddressForm"
-import { AddressFormData } from "@/components/molecules/AddressForm/schema"
-import { deleteCustomerAddress } from "@/lib/data/customer"
-import { cn } from "@/lib/utils"
-import { HttpTypes } from "@medusajs/types"
-import { isEmpty } from "lodash"
-import { useState } from "react"
+"use client";
+import { Button, Card } from "@/components/atoms";
+import { AddressForm, Modal } from "@/components/molecules";
+import { emptyDefaultAddressValues } from "@/components/molecules/AddressForm/AddressForm";
+import { AddressFormData } from "@/components/molecules/AddressForm/schema";
+import { deleteCustomerAddress } from "@/lib/data/customer";
+import { cn } from "@/lib/utils";
+import { HttpTypes } from "@medusajs/types";
+import { isEmpty } from "lodash";
+import { useState } from "react";
 
 export const Addresses = ({
   user,
   regions,
 }: {
-  user: HttpTypes.StoreCustomer
-  regions: HttpTypes.StoreRegion[]
+  user: HttpTypes.StoreCustomer;
+  regions: HttpTypes.StoreRegion[];
 }) => {
-  const [showForm, setShowForm] = useState(false)
-  const [deleteAddress, setDeleteAddress] = useState<string | null>(null)
+  const [showForm, setShowForm] = useState(false);
+  const [deleteAddress, setDeleteAddress] = useState<string | null>(null);
 
   const [defaultValues, setDefaultValues] = useState<AddressFormData | null>(
     null
-  )
+  );
 
-  const countries = regions.flatMap((region) => region.countries)
+  const countries = regions.flatMap((region) => region.countries);
 
   const handleEdit = (addressId: string) => {
-    const address = user.addresses.find((address) => address.id === addressId)
+    const address = user.addresses.find((address) => address.id === addressId);
     if (address) {
       setDefaultValues({
         addressId: addressId,
@@ -40,21 +40,21 @@ export const Addresses = ({
         company: address.company || "",
         province: address.province || "",
         phone: address.phone || user.phone || "",
-      })
-      setShowForm(true)
+      });
+      setShowForm(true);
     }
-  }
+  };
 
   const handleDelete = async (addressId: string) => {
-    await deleteCustomerAddress(addressId)
-    setDeleteAddress(null)
-  }
+    await deleteCustomerAddress(addressId);
+    setDeleteAddress(null);
+  };
 
   const handleAdd = () => {
-    setDefaultValues(emptyDefaultAddressValues)
-    setDeleteAddress(null)
-    setShowForm(true)
-  }
+    setDefaultValues(emptyDefaultAddressValues);
+    setDeleteAddress(null);
+    setShowForm(true);
+  };
 
   return (
     <>
@@ -127,7 +127,7 @@ export const Addresses = ({
               </Card>
             ))}
             {user.addresses.length < 6 && (
-              <Button onClick={handleAdd}>Add address</Button>
+              <Button onClick={handleAdd}>新增地址</Button>
             )}
           </>
         )}
@@ -136,8 +136,8 @@ export const Addresses = ({
         <Modal
           heading={
             defaultValues?.addressId
-              ? `Edit adddress: ${defaultValues.addressName}`
-              : "Add address"
+              ? `修改地址: ${defaultValues.addressName}`
+              : "加入地址"
           }
           onClose={() => setShowForm(false)}
         >
@@ -170,5 +170,5 @@ export const Addresses = ({
         </Modal>
       )}
     </>
-  )
-}
+  );
+};

@@ -18,8 +18,6 @@ export const ProductDetailsPage = async ({
 
   if (!prod) return null
 
-  console.log(prod.seller)
-
   if (SELLER_HANDLE && SELLER_HANDLE !== prod.seller?.handle) {
     return NotFound()
   }

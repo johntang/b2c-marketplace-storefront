@@ -1,18 +1,18 @@
-import { Divider } from "@/components/atoms"
-import { convertToLocale } from "@/lib/helpers/money"
-import { cn } from "@/lib/utils"
-import Image from "next/image"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { Fragment } from "react"
+import { Divider } from "@/components/atoms";
+import { convertToLocale } from "@/lib/helpers/money";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { Fragment } from "react";
 
 export const OrderProductListItem = ({
   item,
   currency_code,
   withDivider,
 }: {
-  item: any
-  currency_code: string
-  withDivider?: boolean
+  item: any;
+  currency_code: string;
+  withDivider?: boolean;
 }) => (
   <Fragment>
     {withDivider && <Divider className="mt-4" />}
@@ -43,7 +43,6 @@ export const OrderProductListItem = ({
         </div>
         <div className="sm:col-span-2 flex flex-col justify-center">
           <p className="label-md text-secondary">
-            {`Variant: `}
             <span className="text-primary">{item?.variant?.title}</span>
           </p>
         </div>
@@ -56,4 +55,4 @@ export const OrderProductListItem = ({
       </div>
     </li>
   </Fragment>
-)
+);

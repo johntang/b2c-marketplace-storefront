@@ -79,8 +79,6 @@ export const ProductDetailsHeader = ({
     setIsAdding(false)
   }
 
-  console.log(product.variants?.find(({ id }) => id === variantId))
-
   const variant = product.variants?.find(({ id }) => id === variantId)
 
   const variantStock =

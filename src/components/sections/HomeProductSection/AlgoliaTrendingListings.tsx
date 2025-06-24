@@ -8,7 +8,7 @@ export const AlgoliaTrendingListings = () => {
     <InstantSearch searchClient={client} indexName="products" routing>
       <section className="py-8 w-full">
         <h2 className="mb-6 heading-lg font-bold tracking-tight uppercase">
-          Trending Listings
+          最近熱門
         </h2>
 
         <TrendingItems

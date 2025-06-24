@@ -1,101 +1,101 @@
-"use client"
+"use client";
 
-import ErrorMessage from "@/components/molecules/ErrorMessage/ErrorMessage"
-import { initiatePaymentSession } from "@/lib/data/cart"
-import { RadioGroup } from "@headlessui/react"
+import ErrorMessage from "@/components/molecules/ErrorMessage/ErrorMessage";
+import { initiatePaymentSession } from "@/lib/data/cart";
+import { RadioGroup } from "@headlessui/react";
 import {
   isStripe as isStripeFunc,
   paymentInfoMap,
-} from "../../../lib/constants"
-import { CheckCircleSolid, CreditCard } from "@medusajs/icons"
-import { Container, Heading, Text } from "@medusajs/ui"
+} from "../../../lib/constants";
+import { CheckCircleSolid, CreditCard } from "@medusajs/icons";
+import { Container, Heading, Text } from "@medusajs/ui";
 import PaymentContainer, {
   StripeCardContainer,
-} from "../../organisms/PaymentContainer/PaymentContainer"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useCallback, useEffect, useState } from "react"
-import { Button } from "@/components/atoms"
+} from "../../organisms/PaymentContainer/PaymentContainer";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import { Button } from "@/components/atoms";
 
 type StoreCardPaymentMethod = any & {
   service_zone?: {
     fulfillment_set: {
-      type: string
-    }
-  }
-}
+      type: string;
+    };
+  };
+};
 
 const CartPaymentSection = ({
   cart,
   availablePaymentMethods,
 }: {
-  cart: any
-  availablePaymentMethods: StoreCardPaymentMethod[] | null
+  cart: any;
+  availablePaymentMethods: StoreCardPaymentMethod[] | null;
 }) => {
   const activeSession = cart.payment_collection?.payment_sessions?.find(
     (paymentSession: any) => paymentSession.status === "pending"
-  )
+  );
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [cardBrand, setCardBrand] = useState<string | null>(null)
-  const [cardComplete, setCardComplete] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [cardBrand, setCardBrand] = useState<string | null>(null);
+  const [cardComplete, setCardComplete] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
     activeSession?.provider_id ?? ""
-  )
+  );
 
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const pathname = usePathname()
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const isOpen = searchParams.get("step") === "payment"
+  const isOpen = searchParams.get("step") === "payment";
 
-  const isStripe = isStripeFunc(selectedPaymentMethod)
+  const isStripe = isStripeFunc(selectedPaymentMethod);
 
   const setPaymentMethod = async (method: string) => {
-    setError(null)
-    setSelectedPaymentMethod(method)
+    setError(null);
+    setSelectedPaymentMethod(method);
     if (isStripeFunc(method)) {
       await initiatePaymentSession(cart, {
         provider_id: method,
-      })
+      });
     }
-  }
+  };
 
   const paidByGiftcard =
-    cart?.gift_cards && cart?.gift_cards?.length > 0 && cart?.total === 0
+    cart?.gift_cards && cart?.gift_cards?.length > 0 && cart?.total === 0;
 
   const paymentReady =
-    (activeSession && cart?.shipping_methods.length !== 0) || paidByGiftcard
+    (activeSession && cart?.shipping_methods.length !== 0) || paidByGiftcard;
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams)
-      params.set(name, value)
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
 
-      return params.toString()
+      return params.toString();
     },
     [searchParams]
-  )
+  );
 
   const handleEdit = () => {
     router.push(pathname + "?" + createQueryString("step", "payment"), {
       scroll: false,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const shouldInputCard =
-        isStripeFunc(selectedPaymentMethod) && !activeSession
+        isStripeFunc(selectedPaymentMethod) && !activeSession;
 
       const checkActiveSession =
-        activeSession?.provider_id === selectedPaymentMethod
+        activeSession?.provider_id === selectedPaymentMethod;
 
       if (!checkActiveSession) {
         await initiatePaymentSession(cart, {
           provider_id: selectedPaymentMethod,
-        })
+        });
       }
 
       if (!shouldInputCard) {
@@ -104,18 +104,18 @@ const CartPaymentSection = ({
           {
             scroll: false,
           }
-        )
+        );
       }
     } catch (err: any) {
-      setError(err.message)
+      setError(err.message);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    setError(null)
-  }, [isOpen])
+    setError(null);
+  }, [isOpen]);
 
   return (
     <div className="border p-4 rounded-sm bg-ui-bg-interactive">
@@ -230,8 +230,8 @@ const CartPaymentSection = ({
                     )}
                   </Container>
                   <Text>
-                    {isStripeFunc(selectedPaymentMethod) && cardBrand
-                      ? cardBrand
+                    {isStripeFunc(selectedPaymentMethod)
+                      ? cardBrand ?? "Card"
                       : "Another step will appear"}
                   </Text>
                 </div>
@@ -253,7 +253,7 @@ const CartPaymentSection = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartPaymentSection
+export default CartPaymentSection;

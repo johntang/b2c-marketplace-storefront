@@ -1,16 +1,16 @@
-import { CloseIcon } from "@/icons"
+import { CloseIcon } from "@/icons";
 
 export const Modal = ({
   children,
   heading,
   onClose,
 }: {
-  children: React.ReactNode
-  heading: string
-  onClose: () => void
+  children: React.ReactNode;
+  heading: string;
+  onClose: () => void;
 }) => {
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex justify-center z-30">
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center z-[10000]">
       <div
         className="bg-tertiary/60 w-full h-full absolute backdrop-blur-sm"
         onClick={onClose}
@@ -25,5 +25,5 @@ export const Modal = ({
         <div className="pt-5">{children}</div>
       </div>
     </div>
-  )
-}
+  );
+};

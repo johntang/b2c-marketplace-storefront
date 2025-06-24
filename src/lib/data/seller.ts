@@ -11,8 +11,6 @@ export const getSellerByHandle = async (handle: string) => {
       cache: "force-cache",
     })
     .then(({ seller }) => {
-      console.log(seller)
-
       const response = {
         ...seller,
         reviews: seller.reviews?.filter((item) => item !== null) ?? [],

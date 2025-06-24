@@ -95,7 +95,7 @@ export default async function Home({
         ]}
       /> */}
       <div className="px-4 lg:px-8 w-full">
-        <HomeProductSection heading="trending listings" locale={locale} home />
+        <HomeProductSection heading="最近熱門" locale={locale} home />
       </div>
       {/* <HomePopularBrandsSection />*/}
       {/* <div className="px-4 lg:px-8 w-full">

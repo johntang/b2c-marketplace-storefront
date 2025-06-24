@@ -4,41 +4,42 @@ import {
   useMemo,
   useRef,
   Fragment,
-} from "react"
+} from "react";
 
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "@medusajs/types";
 import NativeSelect, {
   NativeSelectProps,
-} from "@/components/molecules/NativeSelect/NativeSelect"
-import clsx from "clsx"
-import { SelectField } from "@/components/molecules"
-import { Listbox, Transition } from "@headlessui/react"
-import { clx } from "@medusajs/ui"
-import { ChevronUpDown } from "@medusajs/icons"
+} from "@/components/molecules/NativeSelect/NativeSelect";
+import clsx from "clsx";
+import { SelectField } from "@/components/molecules";
+import { Listbox, Transition } from "@headlessui/react";
+import { clx } from "@medusajs/ui";
+import { ChevronUpDown } from "@medusajs/icons";
+import { cn } from "@/lib/utils";
 
 const CountrySelect = forwardRef<
   HTMLSelectElement,
   NativeSelectProps & {
-    region?: HttpTypes.StoreRegion
+    region?: HttpTypes.StoreRegion;
   }
 >(({ placeholder = "Country", region, defaultValue, ...props }, ref) => {
-  const innerRef = useRef<HTMLSelectElement>(null)
+  const innerRef = useRef<HTMLSelectElement>(null);
 
   useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
     ref,
     () => innerRef.current
-  )
+  );
 
   const countryOptions = useMemo(() => {
     if (!region) {
-      return []
+      return [];
     }
 
     return region.countries?.map((country) => ({
       value: country.iso_2,
       label: country.display_name,
-    }))
-  }, [region])
+    }));
+  }, [region]);
 
   const handleSelect = (value: string) => {
     props.onChange?.({
@@ -46,14 +47,14 @@ const CountrySelect = forwardRef<
         name: props.name,
         value,
       },
-    } as React.ChangeEvent<HTMLSelectElement>)
-  }
+    } as React.ChangeEvent<HTMLSelectElement>);
+  };
 
   return (
-    <label className="label-md">
-      <p className="mb-2">國家</p>
+    <label className="label-sm block">
+      <p className={cn("")}>國家</p>
       <Listbox onChange={handleSelect} value={props.value}>
-        <div className="relative">
+        <div className="relative mt-2">
           <Listbox.Button
             className={clsx(
               "relative w-full flex justify-between items-center px-4 h-12 bg-component-secondary text-left  cursor-default focus:outline-none border rounded-lg focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-gray-300 focus-visible:ring-offset-2 focus-visible:border-gray-300 text-base-regular"
@@ -117,9 +118,9 @@ const CountrySelect = forwardRef<
         </NativeSelect>
       </div>
     </label>
-  )
-})
+  );
+});
 
-CountrySelect.displayName = "CountrySelect"
+CountrySelect.displayName = "CountrySelect";
 
-export default CountrySelect
+export default CountrySelect;

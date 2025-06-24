@@ -1,33 +1,33 @@
-import type { Metadata, ResolvingMetadata } from "next"
-import { Funnel_Display } from "next/font/google"
-import "./globals.css"
-import { SELLER_HANDLE } from "@/lib/config"
-import { SellerProps } from "@/types/seller"
-import { getSellerByHandle } from "@/lib/data/seller"
-import Head from "next/head"
-import Script from "next/script"
+import type { Metadata, ResolvingMetadata } from "next";
+import { Funnel_Display } from "next/font/google";
+import "./globals.css";
+import { SELLER_HANDLE } from "@/lib/config";
+import { SellerProps } from "@/types/seller";
+import { getSellerByHandle } from "@/lib/data/seller";
+import Head from "next/head";
+import Script from "next/script";
 
 const funnelDisplay = Funnel_Display({
   variable: "--font-funnel-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
-})
+});
 
 type Props = {
-  params: Promise<{ slug: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = (await params).slug
+  const slug = (await params).slug;
 
-  let seller: SellerProps | null = null
+  let seller: SellerProps | null = null;
 
   if (SELLER_HANDLE) {
-    seller = await getSellerByHandle(SELLER_HANDLE)
+    seller = await getSellerByHandle(SELLER_HANDLE);
   }
 
   if (seller) {
@@ -43,7 +43,7 @@ export async function generateMetadata(
       metadataBase: new URL(
         process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
       ),
-    }
+    };
   }
 
   return {
@@ -62,17 +62,17 @@ export async function generateMetadata(
     metadataBase: new URL(
       process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
     ),
-  }
+  };
 }
 
 export default async function RootLayout({
   children,
   params,
 }: Readonly<{
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = await params
+  const { locale } = await params;
   return (
     <html lang={locale} className="">
       <Script src="/assets/fontawesome/js/brands.js" defer />
@@ -84,5 +84,5 @@ export default async function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }

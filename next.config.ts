@@ -1,5 +1,5 @@
-import type { NextConfig } from "next"
-const { i18n } = require("./next-i18next.config")
+import type { NextConfig } from "next";
+const { i18n } = require("./next-i18next.config");
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
@@ -18,7 +18,9 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: process.env.CLOUDFLARE_R2_DOMAIN ?? "",
+        hostname:
+          process.env.CLOUDFLARE_R2_DOMAIN ??
+          "pub-c03190477d334353976c337abb81f268.r2.dev",
       },
       {
         protocol: "https",
@@ -51,6 +53,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-}
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: `/${process.env.NEXT_PUBLIC_DEFAULT_REGION}`,
+        permanent: true,
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
