@@ -6,28 +6,28 @@ import {
   ProductDetailsSellerReviews,
   ProductDetailsShipping,
   ProductPageDetails,
-} from "@/components/cells"
-import { singleProduct } from "@/data/singleProductMock"
-import { SELLER_HANDLE } from "@/lib/config"
-import { retrieveCustomer } from "@/lib/data/customer"
-import { getUserWishlists } from "@/lib/data/wishlist"
-import { SellerProps } from "@/types/seller"
-import { Wishlist } from "@/types/wishlist"
-import { HttpTypes } from "@medusajs/types"
+} from "@/components/cells";
+import { singleProduct } from "@/data/singleProductMock";
+import { SELLER_HANDLE } from "@/lib/config";
+import { retrieveCustomer } from "@/lib/data/customer";
+import { getUserWishlists } from "@/lib/data/wishlist";
+import { SellerProps } from "@/types/seller";
+import { Wishlist } from "@/types/wishlist";
+import { HttpTypes } from "@medusajs/types";
 
 export const ProductDetails = async ({
   product,
   locale,
 }: {
-  product: HttpTypes.StoreProduct & { seller?: SellerProps }
-  locale: string
+  product: HttpTypes.StoreProduct & { seller?: SellerProps };
+  locale: string;
 }) => {
-  const user = await retrieveCustomer()
+  const user = await retrieveCustomer();
 
-  let wishlist: Wishlist[] = []
+  let wishlist: Wishlist[] = [];
   if (user) {
-    const response = await getUserWishlists()
-    wishlist = response.wishlists
+    const response = await getUserWishlists();
+    wishlist = response.wishlists;
   }
 
   return (
@@ -38,7 +38,9 @@ export const ProductDetails = async ({
         user={user}
         wishlist={wishlist}
       />
-      <ProductPageDetails details={product?.description || ""} />
+      {/* <div className="visible md:collasp">
+        <ProductPageDetails details={product?.description || ""} />
+      </div> */}
       {/* <ProductDetailsMeasurements measurements={singleProduct.measurements} /> */}
       <ProductDetailsShipping />
       <ProductDetailsSeller seller={product?.seller} />
@@ -50,5 +52,5 @@ export const ProductDetails = async ({
         posted={product?.created_at}
       />
     </div>
-  )
-}
+  );
+};

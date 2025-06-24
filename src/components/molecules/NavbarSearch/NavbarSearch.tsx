@@ -1,28 +1,29 @@
-"use client"
+"use client";
 
-import { Input } from "@/components/atoms"
-import { SearchIcon } from "@/icons"
-import { useSearchParams } from "next/navigation"
-import { useState } from "react"
-import { redirect } from "next/navigation"
+import { Input } from "@/components/atoms";
+import { SearchIcon } from "@/icons";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { redirect } from "next/navigation";
 
 export const NavbarSearch = () => {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
-  const [search, setSearch] = useState(searchParams.get("query") || "")
+  const [search, setSearch] = useState(searchParams.get("query") || "");
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (search) {
-      redirect(`/categories?query=${search}`)
+      redirect(`/categories?query=${search}`);
     } else {
-      redirect(`/categories`)
+      redirect(`/categories`);
     }
-  }
+  };
 
   return (
     <form className="flex items-center" method="POST" onSubmit={submitHandler}>
       <Input
+        className="mb-2"
         icon={<SearchIcon />}
         placeholder="搜尋商品"
         value={search}
@@ -30,5 +31,5 @@ export const NavbarSearch = () => {
       />
       <input type="submit" className="hidden" />
     </form>
-  )
-}
+  );
+};

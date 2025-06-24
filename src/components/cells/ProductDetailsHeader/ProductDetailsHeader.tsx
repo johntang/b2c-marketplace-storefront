@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/atoms"
-import { HttpTypes } from "@medusajs/types"
-import { ProductVariants } from "@/components/molecules"
-import useGetAllSearchParams from "@/hooks/useGetAllSearchParams"
-import { getProductPrice } from "@/lib/helpers/get-product-price"
-import { useState } from "react"
-import { addToCart } from "@/lib/data/cart"
-import { Chat } from "@/components/organisms/Chat/Chat"
-import { SellerProps } from "@/types/seller"
-import { WishlistButton } from "../WishlistButton/WishlistButton"
-import { Wishlist } from "@/types/wishlist"
+import { Button } from "@/components/atoms";
+import { HttpTypes } from "@medusajs/types";
+import { ProductVariants } from "@/components/molecules";
+import useGetAllSearchParams from "@/hooks/useGetAllSearchParams";
+import { getProductPrice } from "@/lib/helpers/get-product-price";
+import { useState } from "react";
+import { addToCart } from "@/lib/data/cart";
+import { Chat } from "@/components/organisms/Chat/Chat";
+import { SellerProps } from "@/types/seller";
+import { WishlistButton } from "../WishlistButton/WishlistButton";
+import { Wishlist } from "@/types/wishlist";
 
 const optionsAsKeymap = (
   variantOptions: HttpTypes.StoreProductVariant["options"]
@@ -20,13 +20,13 @@ const optionsAsKeymap = (
       acc: Record<string, string>,
       varopt: HttpTypes.StoreProductOptionValue
     ) => {
-      acc[varopt.option?.title.toLowerCase() || ""] = varopt.value
+      acc[varopt.option?.title.toLowerCase() || ""] = varopt.value;
 
-      return acc
+      return acc;
     },
     {}
-  )
-}
+  );
+};
 
 export const ProductDetailsHeader = ({
   product,
@@ -34,19 +34,19 @@ export const ProductDetailsHeader = ({
   user,
   wishlist,
 }: {
-  product: HttpTypes.StoreProduct & { seller?: SellerProps }
-  locale: string
-  user: HttpTypes.StoreCustomer | null
-  wishlist?: Wishlist[]
+  product: HttpTypes.StoreProduct & { seller?: SellerProps };
+  locale: string;
+  user: HttpTypes.StoreCustomer | null;
+  wishlist?: Wishlist[];
 }) => {
-  const [isAdding, setIsAdding] = useState(false)
-  const { allSearchParams } = useGetAllSearchParams()
+  const [isAdding, setIsAdding] = useState(false);
+  const { allSearchParams } = useGetAllSearchParams();
 
   // set default variant
   const selectedVariant = {
     ...optionsAsKeymap(product?.variants?.[0].options ?? null),
     ...allSearchParams,
-  }
+  };
 
   // get selected variant id
   const variantId =
@@ -56,39 +56,39 @@ export const ProductDetailsHeader = ({
           option.value
         )
       )
-    )?.id || ""
+    )?.id || "";
 
   // get variant price
   const { variantPrice } = getProductPrice({
     product,
     variantId,
-  })
+  });
 
   // add the selected variant to the cart
   const handleAddToCart = async () => {
-    if (!variantId) return null
+    if (!variantId) return null;
 
-    setIsAdding(true)
+    setIsAdding(true);
 
     await addToCart({
       variantId: variantId,
       quantity: 1,
       countryCode: locale,
-    })
+    });
 
-    setIsAdding(false)
-  }
+    setIsAdding(false);
+  };
 
-  const variant = product.variants?.find(({ id }) => id === variantId)
+  const variant = product.variants?.find(({ id }) => id === variantId);
 
   const variantStock =
     product.variants?.find(({ id }) => id === variantId)?.inventory_quantity ||
-    0
+    0;
 
   const variantHasPrice = product.variants?.find(({ id }) => id === variantId)
     ?.calculated_price
     ? true
-    : false
+    : false;
 
   return (
     <div className="border rounded-sm p-5">
@@ -99,7 +99,14 @@ export const ProductDetailsHeader = ({
           </h2>
           <h1 className="heading-lg text-primary">{product.title}</h1>
           <div className="mt-2 flex gap-2 items-center">
-            <span className="heading-md text-primary">
+            <span
+              className={`heading-md text-primary ${
+                variantPrice?.calculated_price_number !==
+                variantPrice?.original_price_number
+                  ? "text-red-400"
+                  : ""
+              }`}
+            >
               {variantPrice?.calculated_price}
             </span>
             {variantPrice?.calculated_price_number !==
@@ -150,5 +157,5 @@ export const ProductDetailsHeader = ({
         />
       )}
     </div>
-  )
-}
+  );
+};

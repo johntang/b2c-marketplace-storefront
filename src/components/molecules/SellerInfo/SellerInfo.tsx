@@ -1,27 +1,29 @@
-import { StarRating } from "@/components/atoms"
-import { SellerAvatar } from "@/components/cells/SellerAvatar/SellerAvatar"
-import { SellerProps } from "@/types/seller"
-import { SellerReview } from "../SellerReview/SellerReview"
+import { StarRating } from "@/components/atoms";
+import { SellerAvatar } from "@/components/cells/SellerAvatar/SellerAvatar";
+import { SellerProps } from "@/types/seller";
+import { SellerReview } from "../SellerReview/SellerReview";
 
 export const SellerInfo = ({
   seller,
   header = false,
+  abstract = false,
 }: {
-  seller: SellerProps
-  header?: boolean
+  seller: SellerProps;
+  header?: boolean;
+  abstract?: boolean;
 }) => {
-  const { photo, name, reviews, description } = seller
+  const { photo, name, reviews, description } = seller;
 
   const reviewCount = reviews
     ? reviews?.filter((rev) => rev !== null).length
-    : 0
+    : 0;
 
   const rating =
     reviews && reviews.length > 0
       ? reviews
           .filter((rev) => rev !== null)
           .reduce((sum, r) => sum + r?.rating || 0, 0) / reviewCount
-      : 0
+      : 0;
 
   return (
     <>
@@ -56,7 +58,7 @@ export const SellerInfo = ({
                 dangerouslySetInnerHTML={{
                   __html: seller.description,
                 }}
-                className="label-sm my-5"
+                className={`label-sm my-5 ${abstract ? "line-clamp-3" : ""}`}
               />
 
               {!header &&
@@ -71,5 +73,5 @@ export const SellerInfo = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};

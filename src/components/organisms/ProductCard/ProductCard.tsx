@@ -1,14 +1,14 @@
-"use client"
-import Image from "next/image"
+"use client";
+import Image from "next/image";
 
-import { Button } from "@/components/atoms"
-import { HttpTypes } from "@medusajs/types"
+import { Button } from "@/components/atoms";
+import { HttpTypes } from "@medusajs/types";
 
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { convertToLocale } from "@/lib/helpers/money"
-import { SellerProps } from "@/types/seller"
-import clsx from "clsx"
-import { BaseHit, Hit } from "instantsearch.js"
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { convertToLocale } from "@/lib/helpers/money";
+import { SellerProps } from "@/types/seller";
+import clsx from "clsx";
+import { BaseHit, Hit } from "instantsearch.js";
 
 const getRegionPrice = (product: any, currency_code: string) => {
   const variant = product.variants?.find((variant: any) => {
@@ -16,8 +16,8 @@ const getRegionPrice = (product: any, currency_code: string) => {
       ? variant.prices?.some(
           (price: any) => price.currency_code === currency_code
         )
-      : variant.calculated_price
-  })
+      : variant.calculated_price;
+  });
 
   const price = variant?.calculated_price
     ? {
@@ -51,10 +51,10 @@ const getRegionPrice = (product: any, currency_code: string) => {
               currency_code,
             })
           : null,
-      }
+      };
 
-  return price
-}
+  return price;
+};
 
 export const ProductCard = ({
   product,
@@ -62,13 +62,13 @@ export const ProductCard = ({
 }: {
   product:
     | Hit<HttpTypes.StoreProduct & { seller?: SellerProps }>
-    | Partial<Hit<BaseHit>>
-  currency_code?: string
+    | Partial<Hit<BaseHit>>;
+  currency_code?: string;
 }) => {
-  const price = getRegionPrice(product, currency_code || "usd")
+  const price = getRegionPrice(product, currency_code || "usd");
 
   if (!price.calculated_price) {
-    return null
+    return null;
   }
 
   return (
@@ -86,7 +86,7 @@ export const ProductCard = ({
                 alt={product.title}
                 width={360}
                 height={360}
-                className="object-cover aspect-square w-full object-center h-full lg:group-hover:-mt-14 transition-all duration-300 rounded-xs"
+                className="object-cover aspect-square w-full object-center h-full lg:group-hover:-mt-14 transition-all duration-300 rounded-xs hover:scale-125"
                 priority
               />
             ) : (
@@ -116,7 +116,15 @@ export const ProductCard = ({
           </LocalizedClientLink>
 
           <div className="flex items-center gap-2 ">
-            <p className="font-medium">{price.calculated_price}</p>
+            <p
+              className={`font-medium ${
+                price.calculated_price !== price.original_price
+                  ? "text-red-400"
+                  : ""
+              }`}
+            >
+              {price.calculated_price}
+            </p>
             {price.original_price &&
               price.calculated_price !== price.original_price && (
                 <p className="text-sm text-gray-500 line-through">
@@ -146,5 +154,5 @@ export const ProductCard = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

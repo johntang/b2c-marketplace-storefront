@@ -1,13 +1,13 @@
-import { HttpTypes } from "@medusajs/types"
-import { Metadata } from "next"
-import { headers } from "next/headers"
+import { HttpTypes } from "@medusajs/types";
+import { Metadata } from "next";
+import { headers } from "next/headers";
 
 export const generateProductMetadata = async (
   product: HttpTypes.StoreProduct
 ): Promise<Metadata> => {
-  const headersList = await headers()
-  const host = headersList.get("host")
-  const protocol = headersList.get("x-forwarded-proto") || "https"
+  const headersList = await headers();
+  const host = headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") || "https";
 
   return {
     title: product?.title,
@@ -25,8 +25,8 @@ export const generateProductMetadata = async (
           url:
             product?.thumbnail ||
             `${protocol}://${host}/images/placeholder.svg`,
-          width: 1200,
-          height: 630,
+          width: 2378,
+          height: 1784,
           alt: product?.title,
         },
       ],
@@ -40,15 +40,15 @@ export const generateProductMetadata = async (
         product?.thumbnail || `${protocol}://${host}/images/placeholder.svg`,
       ],
     },
-  }
-}
+  };
+};
 
 export const generateCategoryMetadata = async (
   category: HttpTypes.StoreProductCategory
 ) => {
-  const headersList = await headers()
-  const host = headersList.get("host")
-  const protocol = headersList.get("x-forwarded-proto") || "https"
+  const headersList = await headers();
+  const host = headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") || "https";
 
   return {
     robots: "index, follow",
@@ -84,5 +84,5 @@ export const generateCategoryMetadata = async (
           `${protocol}://${host}/images/placeholder.svg`,
       ],
     },
-  }
-}
+  };
+};
