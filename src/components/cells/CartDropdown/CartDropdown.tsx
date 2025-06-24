@@ -1,44 +1,44 @@
-"use client"
+"use client";
 
-import { Badge, Button } from "@/components/atoms"
-import { CartDropdownItem, Dropdown } from "@/components/molecules"
-import { usePrevious } from "@/hooks/usePrevious"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { CartIcon } from "@/icons"
-import { convertToLocale } from "@/lib/helpers/money"
-import { HttpTypes } from "@medusajs/types"
-import { useEffect, useState } from "react"
-import { usePathname } from "next/navigation"
+import { Badge, Button } from "@/components/atoms";
+import { CartDropdownItem, Dropdown } from "@/components/molecules";
+import { usePrevious } from "@/hooks/usePrevious";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { CartIcon } from "@/icons";
+import { convertToLocale } from "@/lib/helpers/money";
+import { HttpTypes } from "@medusajs/types";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const getItemCount = (cart: HttpTypes.StoreCart | null) => {
-  return cart?.items?.reduce((acc, item) => acc + item.quantity, 0) || 0
-}
+  return cart?.items?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+};
 
 export const CartDropdown = ({
   cart,
 }: {
-  cart: HttpTypes.StoreCart | null
+  cart: HttpTypes.StoreCart | null;
 }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  const previousItemCount = usePrevious(getItemCount(cart))
-  const cartItemsCount = (cart && getItemCount(cart)) || 0
-  const pathname = usePathname()
+  const previousItemCount = usePrevious(getItemCount(cart));
+  const cartItemsCount = (cart && getItemCount(cart)) || 0;
+  const pathname = usePathname();
 
   const total = convertToLocale({
     amount: cart?.item_total || 0,
     currency_code: cart?.currency_code || "eur",
-  })
+  });
 
   useEffect(() => {
     if (open) {
       const timeout = setTimeout(() => {
-        setOpen(false)
-      }, 2000)
+        setOpen(false);
+      }, 2000);
 
-      return () => clearTimeout(timeout)
+      return () => clearTimeout(timeout);
     }
-  }, [open])
+  }, [open]);
 
   useEffect(() => {
     if (
@@ -46,9 +46,9 @@ export const CartDropdown = ({
       cartItemsCount > previousItemCount &&
       pathname.split("/")[2] !== "cart"
     ) {
-      setOpen(true)
+      setOpen(true);
     }
-  }, [cartItemsCount, previousItemCount])
+  }, [cartItemsCount, previousItemCount]);
 
   return (
     <div
@@ -65,7 +65,7 @@ export const CartDropdown = ({
         )}
       </LocalizedClientLink>
       <Dropdown show={open}>
-        <div className="lg:w-[460px] shadow-lg">
+        <div className="lg:w-[560px] shadow-lg w-[300px]">
           <h3 className="uppercase heading-md border-b p-4">購物車</h3>
           <div className="p-4">
             {Boolean(cartItemsCount) ? (
@@ -103,5 +103,5 @@ export const CartDropdown = ({
         </div>
       </Dropdown>
     </div>
-  )
-}
+  );
+};
