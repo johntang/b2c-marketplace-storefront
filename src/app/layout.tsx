@@ -4,7 +4,6 @@ import "./globals.css";
 import { SELLER_HANDLE } from "@/lib/config";
 import { SellerProps } from "@/types/seller";
 import { getSellerByHandle } from "@/lib/data/seller";
-import Head from "next/head";
 import Script from "next/script";
 
 const funnelDisplay = Funnel_Display({

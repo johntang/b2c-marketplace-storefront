@@ -1,4 +1,4 @@
-import "./style.css"
+import "./style.css";
 
 export default function Privacy() {
   return (
@@ -446,5 +446,5 @@ export default function Privacy() {
         If you have any questions about this Privacy Policy, You can contact us:
       </p>
     </div>
-  )
+  );
 }

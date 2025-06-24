@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-const { i18n } = require("./next-i18next.config");
+// const { i18n } = require("./next-i18next.config");
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
-  i18n: i18n,
+  // i18n: i18n,
   images: {
     remotePatterns: [
       {

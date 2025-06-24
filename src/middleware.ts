@@ -108,8 +108,6 @@ async function getCountryCode(
 export async function middleware(request: NextRequest) {
   let redirectUrl = request.nextUrl.href;
 
-  console.log(redirectUrl);
-
   let response = NextResponse.redirect(redirectUrl, 307);
 
   let cacheIdCookie = request.cookies.get("_medusa_cache_id");
