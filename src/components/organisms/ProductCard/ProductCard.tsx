@@ -110,7 +110,7 @@ export const ProductCard = ({
           <h3 className="heading-sm truncate">{product.title}</h3>
 
           <LocalizedClientLink href={`/sellers/${product.seller.handle}`}>
-            <p className="hover:underline mt-2 text-md">
+            <p className="hover:underline mt-2 text-md mb-0">
               {product.seller.name}
             </p>
           </LocalizedClientLink>

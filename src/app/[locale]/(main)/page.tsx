@@ -8,29 +8,66 @@ import {
   HomeProductSection,
   ShopByStyleSection,
 } from "@/components/sections"
+import { SELLER_HANDLE } from "@/lib/config"
+import { getSellerByHandle } from "@/lib/data/seller"
+import { SellerProps } from "@/types/seller"
 
-import type { Metadata } from "next"
+import type { Metadata, ResolvingMetadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Home",
-  description:
-    "Welcome to Mercur B2C Demo! Create a modern marketplace that you own and customize in every aspect with high-performance, fully customizable storefront.",
-  openGraph: {
-    title: "Mercur B2C Demo - Marketplace Storefront",
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata(
+  { params, searchParams, ...props }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  let seller: SellerProps | null = null
+
+  if (SELLER_HANDLE) {
+    seller = await getSellerByHandle(SELLER_HANDLE)
+  }
+
+  // if (seller) {
+  //   return {
+  //     title: {
+  //       template: `%s | ${
+  //         process.env.NEXT_PUBLIC_SITE_NAME ||
+  //         "Mercur B2C Demo - Marketplace Storefront"
+  //       }`,
+  //       default: seller.name,
+  //     },
+  //     description: seller.description,
+  //     metadataBase: new URL(
+  //       process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+  //     ),
+  //   }
+  // }
+
+  return {
+    title: seller?.name ?? "Home",
     description:
+      seller?.description ??
       "Welcome to Mercur B2C Demo! Create a modern marketplace that you own and customize in every aspect with high-performance, fully customizable storefront.",
-    url: process.env.NEXT_PUBLIC_BASE_URL,
-    siteName: "Mercur B2C Demo - Marketplace Storefront",
-    type: "website",
-    images: [
-      {
-        url: "/B2C_Storefront_Open_Graph.png",
-        width: 1200,
-        height: 630,
-        alt: "Mercur B2C Demo - Marketplace Storefront",
-      },
-    ],
-  },
+    openGraph: {
+      title: seller?.name ?? "Home",
+      description:
+        seller?.description ??
+        "Welcome to Mercur B2C Demo! Create a modern marketplace that you own and customize in every aspect with high-performance, fully customizable storefront.",
+      url: process.env.NEXT_PUBLIC_BASE_URL,
+      siteName: "Mercur B2C Demo - Marketplace Storefront",
+      type: "website",
+      images: [
+        {
+          url: seller?.photo ?? "/B2C_Storefront_Open_Graph.png",
+          width: 1200,
+          height: 630,
+          alt: "Mercur B2C Demo - Marketplace Storefront",
+        },
+      ],
+    },
+  }
 }
 
 export default async function Home({

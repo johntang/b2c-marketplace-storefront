@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "pub-c03190477d334353976c337abb81f268.r2.dev",
+      },
+      {
+        protocol: "https",
         hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
       },
       {
