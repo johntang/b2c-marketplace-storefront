@@ -11,11 +11,12 @@ export const metadata: Metadata = {
 export default async function NotFound({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params?: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-
-  console.log(locale);
+  let locale = process.env.NEXT_PUBLIC_DEFAULT_REGION;
+  if (params) {
+    locale = (await params).locale;
+  }
 
   return (
     <div className="flex flex-col gap-4 items-center justify-center py-24">

@@ -1,46 +1,47 @@
-import { ProductListingSkeleton } from "@/components/organisms/ProductListingSkeleton/ProductListingSkeleton"
-import { getCategoryByHandle } from "@/lib/data/categories"
-import { Suspense } from "react"
+import { ProductListingSkeleton } from "@/components/organisms/ProductListingSkeleton/ProductListingSkeleton";
+import { getCategoryByHandle } from "@/lib/data/categories";
+import { Suspense } from "react";
 
-import type { Metadata } from "next"
-import { generateCategoryMetadata } from "@/lib/helpers/seo"
-import { Breadcrumbs } from "@/components/atoms"
-import { AlgoliaProductsListing, ProductListing } from "@/components/sections"
-import { notFound } from "next/navigation"
+import type { Metadata } from "next";
+import { generateCategoryMetadata } from "@/lib/helpers/seo";
+import { Breadcrumbs } from "@/components/atoms";
+import { AlgoliaProductsListing, ProductListing } from "@/components/sections";
+import { notFound } from "next/navigation";
+import NotFound from "@/app/not-found";
 
-const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID
-const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
+const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID;
+const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY;
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ category: string }>
+  params: Promise<{ category: string }>;
 }): Promise<Metadata> {
-  const { category } = await params
+  const { category } = await params;
 
-  const cat = await getCategoryByHandle([category])
+  const cat = await getCategoryByHandle([category]);
 
-  return generateCategoryMetadata(cat)
+  return generateCategoryMetadata(cat);
 }
 
 async function Category({
   params,
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>
+  searchParams: Promise<{ page: string }>;
   params: Promise<{
-    category: string
-    locale: string
-  }>
+    category: string;
+    locale: string;
+  }>;
 }) {
-  const { category: handle, locale } = await params
+  const { category: handle, locale } = await params;
 
-  const { page } = await searchParams
+  const { page } = await searchParams;
 
-  const category = await getCategoryByHandle([handle])
+  const category = await getCategoryByHandle([handle]);
 
   if (!category) {
-    return notFound()
+    return notFound();
   }
 
   const breadcrumbsItems = [
@@ -48,7 +49,7 @@ async function Category({
       path: category?.handle,
       label: category?.name,
     },
-  ]
+  ];
 
   return (
     <main className="container">
@@ -70,7 +71,7 @@ async function Category({
         )}
       </Suspense>
     </main>
-  )
+  );
 }
 
-export default Category
+export default Category;
