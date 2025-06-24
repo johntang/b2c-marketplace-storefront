@@ -25,8 +25,8 @@ export const generateProductMetadata = async (
           url:
             product?.thumbnail ||
             `${protocol}://${host}/images/placeholder.svg`,
-          width: 2378,
-          height: 1784,
+          width: 1200,
+          height: 630,
           alt: product?.title,
         },
       ],

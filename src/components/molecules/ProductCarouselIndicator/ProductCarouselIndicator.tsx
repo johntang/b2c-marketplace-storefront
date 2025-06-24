@@ -1,48 +1,48 @@
-"use client"
-import Image from "next/image"
-import { HttpTypes } from "@medusajs/types"
-import { EmblaCarouselType } from "embla-carousel"
-import { useCallback, useEffect, useState } from "react"
-import { cn } from "@/lib/utils"
-import { Indicator } from "@/components/atoms"
-import useEmblaCarousel from "embla-carousel-react"
+"use client";
+import Image from "next/image";
+import { HttpTypes } from "@medusajs/types";
+import { EmblaCarouselType } from "embla-carousel";
+import { useCallback, useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Indicator } from "@/components/atoms";
+import useEmblaCarousel from "embla-carousel-react";
 
 export const ProductCarouselIndicator = ({
   slides = [],
   embla: parentEmbla,
 }: {
-  slides: HttpTypes.StoreProduct["images"]
-  embla?: EmblaCarouselType
+  slides: HttpTypes.StoreProduct["images"];
+  embla?: EmblaCarouselType;
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    axis: "y",
+    axis: "x",
     loop: true,
     align: "start",
-  })
+  });
 
   const changeSlideHandler = useCallback(
     (index: number) => {
-      if (!parentEmbla) return
-      parentEmbla.scrollTo(index)
+      if (!parentEmbla) return;
+      parentEmbla.scrollTo(index);
 
-      if (!emblaApi) return
-      emblaApi.scrollTo(index)
+      if (!emblaApi) return;
+      emblaApi.scrollTo(index);
     },
     [parentEmbla, emblaApi]
-  )
+  );
 
   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [])
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, []);
 
   useEffect(() => {
-    if (!parentEmbla) return
+    if (!parentEmbla) return;
 
-    onSelect(parentEmbla)
-    parentEmbla.on("reInit", onSelect).on("select", onSelect)
-  }, [parentEmbla, onSelect])
+    onSelect(parentEmbla);
+    parentEmbla.on("reInit", onSelect).on("select", onSelect);
+  }, [parentEmbla, onSelect]);
 
   return (
     <div className="embla__dots absolute lg:top-3 bottom-3 lg:bottom-auto left-3 w-[calc(100%-24px)] h-[2px]">
@@ -59,7 +59,7 @@ export const ProductCarouselIndicator = ({
           className="embla__viewport overflow-hidden rounded-xs"
           ref={emblaRef}
         >
-          <div className="embla__container h-[350px] lg:h-[680px] flex lg:block">
+          <div className="embla__container h-[350px] lg:h-[350px] flex lg:block">
             {(slides || []).map((slide, index) => (
               <div
                 key={slide.id}
@@ -84,5 +84,5 @@ export const ProductCarouselIndicator = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

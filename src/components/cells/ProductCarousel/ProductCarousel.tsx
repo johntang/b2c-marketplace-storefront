@@ -1,26 +1,23 @@
-"use client"
+"use client";
 
-import useEmblaCarousel from "embla-carousel-react"
-import { HttpTypes } from "@medusajs/types"
-import Image from "next/image"
-import { ProductCarouselIndicator } from "@/components/molecules"
-import { useScreenSize } from "@/hooks/useScreenSize"
+import useEmblaCarousel from "embla-carousel-react";
+import { HttpTypes } from "@medusajs/types";
+import Image from "next/image";
+import { ProductCarouselIndicator } from "@/components/molecules";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
 export const ProductCarousel = ({
   slides = [],
 }: {
-  slides: HttpTypes.StoreProduct["images"]
+  slides: HttpTypes.StoreProduct["images"];
 }) => {
-  const screenSize = useScreenSize()
+  const screenSize = useScreenSize();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    axis:
-      screenSize === "xs" || screenSize === "sm" || screenSize === "md"
-        ? "x"
-        : "y",
+    axis: "x",
     loop: true,
     align: "start",
-  })
+  });
 
   return (
     <div className="embla relative">
@@ -28,7 +25,7 @@ export const ProductCarousel = ({
         className="embla__viewport overflow-hidden rounded-xs"
         ref={emblaRef}
       >
-        <div className="h-[350px] lg:h-fit max-h-[698px] flex lg:block">
+        <div className="h-[350px] lg:h-fit max-h-[350px] flex lg:block">
           {(slides || []).map((slide) => (
             <div
               key={slide.id}
@@ -37,10 +34,10 @@ export const ProductCarousel = ({
               <Image
                 src={decodeURIComponent(slide.url)}
                 alt="Product image"
-                width={700}
-                height={700}
+                width={350}
+                height={350}
                 quality={100}
-                className="max-h-[700px] w-full h-auto aspect-square object-cover object-center"
+                className="max-h-[350px] w-full h-auto object-cover object-center aspect-square"
               />
             </div>
           ))}
@@ -50,5 +47,5 @@ export const ProductCarousel = ({
         ) : null}
       </div>
     </div>
-  )
-}
+  );
+};
