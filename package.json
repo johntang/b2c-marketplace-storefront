@@ -11,11 +11,15 @@
   "dependencies": {
     "@headlessui/react": "^2.2.1",
     "@hookform/resolvers": "^3.10.0",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
     "@medusajs/js-sdk": "^2.2.0",
     "@medusajs/ui": "^4.0.7",
+    "@next/mdx": "15.3.4",
     "@stripe/react-stripe-js": "^3.7.0",
     "@stripe/stripe-js": "^7.1.0",
     "@types/js-cookie": "^3.0.6",
+    "@types/mdx": "^2.0.13",
     "algoliasearch": "^5.20.3",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -24,12 +28,12 @@
     "i18next-browser-languagedetector": "^8.1.0",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
-    "next": "15.1.4",
+    "next": "15.3.4",
     "next-i18next": "^15.4.2",
     "next-intl": "^3.26.3",
-    "react": "^19.0.0",
+    "react": "19.1.0",
     "react-country-flag": "^3.1.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "19.1.0",
     "react-hook-form": "^7.54.2",
     "react-i18next": "^15.5.3",
     "react-instantsearch": "^7.15.3",
@@ -49,12 +53,13 @@
     "@storybook/nextjs": "^8.4.7",
     "@storybook/react": "^8.4.7",
     "@storybook/test": "^8.4.7",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/lodash": "^4.17.15",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
     "eslint": "^9",
-    "eslint-config-next": "15.1.4",
+    "eslint-config-next": "15.3.4",
     "eslint-plugin-storybook": "^0.11.2",
     "postcss": "^8",
     "storybook": "^8.4.7",
@@ -66,5 +71,9 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "overrides": {
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6"
   }
 }

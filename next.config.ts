@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 // const { i18n } = require("./next-i18next.config");
 
+const withMDX = createMDX({});
+
 const nextConfig: NextConfig = {
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   trailingSlash: false,
   reactStrictMode: true,
   logging: {
@@ -62,4 +66,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withMDX(nextConfig);
