@@ -15,6 +15,7 @@ export const listProducts = async ({
   regionId,
   category_id,
   collection_id,
+  seller_id,
 }: {
   pageParam?: number;
   queryParams?: HttpTypes.FindParams &
@@ -25,6 +26,7 @@ export const listProducts = async ({
   collection_id?: string;
   countryCode?: string;
   regionId?: string;
+  seller_id?: string;
 }): Promise<{
   response: {
     products: (HttpTypes.StoreProduct & { seller?: SellerProps })[];
@@ -76,7 +78,7 @@ export const listProducts = async ({
           "*variants.calculated_price,+variants.inventory_quantity,*seller,*variants,*seller.products,*seller.reviews,*seller.reviews.customer",
         ...queryParams,
       },
-      headers,
+      headers: { ...headers, seller_id: seller_id ?? "" },
       cache: "no-cache",
     })
     .then(({ products: productsRaw, count }) => {
@@ -154,13 +156,10 @@ export const listProductsWithSort = async ({
     category_id,
     collection_id,
     countryCode,
+    seller_id,
   });
 
-  const filteredProducts = seller_id
-    ? products.filter((product) => product.seller?.id === seller_id)
-    : products;
-
-  const sortedProducts = sortProducts(filteredProducts, sortBy);
+  const sortedProducts = sortProducts(products, sortBy);
 
   const pageParam = (page - 1) * limit;
 
