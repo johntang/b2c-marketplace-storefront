@@ -7,26 +7,29 @@ export const generateProductMetadata = async (
 ): Promise<Metadata> => {
   const headersList = await headers();
   const host = headersList.get("host");
+
   const protocol = headersList.get("x-forwarded-proto") || "https";
 
   return {
     title: product?.title,
     description: `${product?.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
     robots: "index, follow",
-    metadataBase: new URL(`${protocol}://${host}/products/${product?.handle}`),
+    metadataBase: new URL(
+      `${protocol}://${host}/hk/products/${product?.handle}`
+    ),
 
     openGraph: {
       title: product?.title,
       description: `${product?.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`,
-      url: `${protocol}://${host}/products/${product?.handle}`,
+      url: `${protocol}://${host}/hk/products/${product?.handle}`,
       siteName: process.env.NEXT_PUBLIC_SITE_NAME,
       images: [
         {
           url:
             product?.thumbnail ||
             `${protocol}://${host}/images/placeholder.svg`,
-          width: 1200,
-          height: 630,
+          width: 640,
+          height: 640,
           alt: product?.title,
         },
       ],
