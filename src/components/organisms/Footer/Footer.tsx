@@ -1,13 +1,14 @@
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import footerLinks from "@/data/footerLinks"
-import { SELLER_HANDLE } from "@/lib/config"
-import { getSellerByHandle } from "@/lib/data/seller"
-import { SellerProps } from "@/types/seller"
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import footerLinks from "@/data/footerLinks";
+import { SELLER_HANDLE } from "@/lib/config";
+import { getSellerByHandle } from "@/lib/data/seller";
+import { SellerProps } from "@/types/seller";
+import Link from "next/link";
 
 export async function Footer() {
-  let seller: SellerProps | null = null
+  let seller: SellerProps | null = null;
   if (SELLER_HANDLE) {
-    seller = await getSellerByHandle(SELLER_HANDLE)
+    seller = await getSellerByHandle(SELLER_HANDLE);
   }
 
   return (
@@ -52,7 +53,7 @@ export async function Footer() {
           <h2 className="heading-sm text-primary mb-3 uppercase">connect</h2>
           <nav className="space-y-3" aria-label="Social media navigation">
             {footerLinks.connect.map(({ label, path }) => (
-              <LocalizedClientLink
+              <Link
                 key={label}
                 href={path}
                 className="block label-md"
@@ -60,7 +61,7 @@ export async function Footer() {
                 rel="noopener noreferrer"
               >
                 {label}
-              </LocalizedClientLink>
+              </Link>
             ))}
           </nav>
         </div>
@@ -72,5 +73,5 @@ export async function Footer() {
         </p>
       </div>
     </footer>
-  )
+  );
 }

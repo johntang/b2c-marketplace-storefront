@@ -9,13 +9,13 @@ const links = {
   about: [
     { label: "About us", path: "/about" },
     { label: "Privacy Policy", path: "/privacy" },
-    { label: "Terms & Conditions", path: "#" },
+    { label: "Terms & Conditions", path: "/terms" },
   ],
   connect: [
     { label: "Facebook", path: "https://facebook.com" },
     { label: "Instagram", path: "https://instagram.com" },
-    { label: "LinekdIn", path: "https://linkedin.com" },
+    // { label: "LinekdIn", path: "https://linkedin.com" },
   ],
-}
+};
 
-export default links
+export default links;
