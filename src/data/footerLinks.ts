@@ -12,8 +12,8 @@ const links = {
     { label: "服務條款", path: "/terms" },
   ],
   connect: [
-    { label: "Facebook", path: "https://facebook.com" },
-    { label: "Instagram", path: "https://instagram.com" },
+    // { label: "Facebook", path: "https://facebook.com" },
+    // { label: "Instagram", path: "https://instagram.com" },
     // { label: "LinekdIn", path: "https://linkedin.com" },
   ],
 };

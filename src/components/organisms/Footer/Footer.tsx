@@ -63,6 +63,16 @@ export async function Footer() {
                 {label}
               </Link>
             ))}
+            {!!seller?.ig && (
+              <Link
+                href={seller?.ig}
+                className="block label-md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </Link>
+            )}
           </nav>
         </div>
       </div>

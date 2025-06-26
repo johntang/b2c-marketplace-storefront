@@ -61,12 +61,18 @@ export default async function Home({
 }) {
   const { locale } = await params;
 
+  let seller: SellerProps | null = null;
+
+  if (SELLER_HANDLE) {
+    seller = await getSellerByHandle(SELLER_HANDLE);
+  }
+
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-primary">
       <Hero
         image="https://cdn01.pinkoi.com/store/starryan/banner/1/1200x245.avif"
-        heading="Starryan"
-        paragraph="Everyone can be a Shiny Star"
+        heading={seller?.name ?? "Starryan"}
+        paragraph={seller?.description ?? "Everyone can be a Shiny Star"}
         buttons={[
           { label: "立即選購", path: "/categories" },
           // {
