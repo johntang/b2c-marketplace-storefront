@@ -16,9 +16,7 @@ export async function Footer() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-2">
         {/* Customer Services Column */}
         <div className="p-6 border rounded-sm">
-          <h2 className="heading-sm text-primary mb-3 uppercase">
-            Customer services
-          </h2>
+          <h2 className="heading-sm text-primary mb-3 uppercase">幫助</h2>
           <nav className="space-y-3" aria-label="Customer services navigation">
             {footerLinks.customerServices.map(({ label, path }) => (
               <LocalizedClientLink
@@ -34,7 +32,7 @@ export async function Footer() {
 
         {/* About Column */}
         <div className="p-6 border rounded-sm">
-          <h2 className="heading-sm text-primary mb-3 uppercase">About</h2>
+          <h2 className="heading-sm text-primary mb-3 uppercase">關於</h2>
           <nav className="space-y-3" aria-label="About navigation">
             {footerLinks.about.map(({ label, path }) => (
               <LocalizedClientLink
@@ -50,7 +48,9 @@ export async function Footer() {
 
         {/* Connect Column */}
         <div className="p-6 border rounded-sm">
-          <h2 className="heading-sm text-primary mb-3 uppercase">connect</h2>
+          <h2 className="heading-sm text-primary mb-3 uppercase">
+            追蹤 {seller?.name || "STARRYAN"}
+          </h2>
           <nav className="space-y-3" aria-label="Social media navigation">
             {footerLinks.connect.map(({ label, path }) => (
               <Link
@@ -69,7 +69,8 @@ export async function Footer() {
 
       <div className="py-6 border rounded-sm ">
         <p className="text-md text-secondary text-center ">
-          © {new Date().getFullYear()} {seller?.name ?? "StarrYan"}
+          © {new Date().getFullYear()} {seller?.name ?? "StarrYan"}. All right
+          reserved
         </p>
       </div>
     </footer>

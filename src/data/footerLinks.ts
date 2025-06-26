@@ -1,15 +1,15 @@
 const links = {
   customerServices: [
-    { label: "FAQs", path: "#" },
-    { label: "Track Order", path: "#" },
-    { label: "Returns", path: "#" },
-    { label: "Delivery", path: "#" },
-    { label: "Payment", path: "#" },
+    { label: "常見問題", path: "#" },
+    // { label: "Track Order", path: "#" },
+    // { label: "Returns", path: "#" },
+    // { label: "Delivery", path: "#" },
+    // { label: "Payment", path: "#" },
   ],
   about: [
-    { label: "About us", path: "/about" },
-    { label: "Privacy Policy", path: "/privacy" },
-    { label: "Terms & Conditions", path: "/terms" },
+    { label: "關於我們", path: "/about" },
+    { label: "隱私權政策", path: "/privacy" },
+    { label: "服務條款", path: "/terms" },
   ],
   connect: [
     { label: "Facebook", path: "https://facebook.com" },

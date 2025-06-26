@@ -3,12 +3,8 @@ import {
   ProductDetailsHeader,
   ProductDetailsMeasurements,
   ProductDetailsSeller,
-  ProductDetailsSellerReviews,
   ProductDetailsShipping,
-  ProductPageDetails,
 } from "@/components/cells";
-import { singleProduct } from "@/data/singleProductMock";
-import { SELLER_HANDLE } from "@/lib/config";
 import { retrieveCustomer } from "@/lib/data/customer";
 import { getUserWishlists } from "@/lib/data/wishlist";
 import { SellerProps } from "@/types/seller";
@@ -41,7 +37,9 @@ export const ProductDetails = async ({
       {/* <div className="visible md:collasp">
         <ProductPageDetails details={product?.description || ""} />
       </div> */}
-      {/* <ProductDetailsMeasurements measurements={singleProduct.measurements} /> */}
+      <ProductDetailsMeasurements
+        measurements={[{ label: "產地", value: product.origin_country ?? "" }]}
+      />
       <ProductDetailsShipping />
       <ProductDetailsSeller seller={product?.seller} />
       {/* <ProductDetailsSellerReviews
