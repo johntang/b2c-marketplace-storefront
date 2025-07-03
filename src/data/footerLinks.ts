@@ -7,7 +7,7 @@ const links = {
     // { label: "Payment", path: "#" },
   ],
   about: [
-    { label: "關於我們", path: "/about" },
+    // { label: "關於我們", path: "/about" },
     { label: "隱私權政策", path: "/privacy" },
     { label: "服務條款", path: "/terms" },
   ],

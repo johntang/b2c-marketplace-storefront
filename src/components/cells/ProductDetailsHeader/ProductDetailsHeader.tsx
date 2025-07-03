@@ -98,7 +98,7 @@ export const ProductDetailsHeader = ({
             {/* {product?.brand || "No brand"} */}
           </h2>
           <h1 className="heading-lg text-primary">{product.title}</h1>
-          <div className="mt-2 flex gap-2 items-center">
+          <div className="my-2 flex gap-2 items-center">
             <span
               className={`heading-md text-primary ${
                 variantPrice?.calculated_price_number !==
@@ -127,7 +127,10 @@ export const ProductDetailsHeader = ({
         </div>
       </div>
       {/* Product Variants */}
-      <ProductVariants product={product} selectedVariant={selectedVariant} />
+      {!!product.variants && product.variants?.length > 1 && (
+        <ProductVariants product={product} selectedVariant={selectedVariant} />
+      )}
+
       {/* Add to Cart */}
       <Button
         onClick={handleAddToCart}

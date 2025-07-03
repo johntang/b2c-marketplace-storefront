@@ -11,11 +11,13 @@ export async function Footer() {
     seller = await getSellerByHandle(SELLER_HANDLE);
   }
 
+  console.log(seller);
+
   return (
-    <footer className="bg-primary container">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-2">
+    <footer className="bg-primary max-w-[1440px] mx-auto px-4 lg:px-8 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2 ">
         {/* Customer Services Column */}
-        <div className="p-6 border rounded-sm">
+        {/* <div className="p-6 border rounded-sm">
           <h2 className="heading-sm text-primary mb-3 uppercase">幫助</h2>
           <nav className="space-y-3" aria-label="Customer services navigation">
             {footerLinks.customerServices.map(({ label, path }) => (
@@ -28,7 +30,7 @@ export async function Footer() {
               </LocalizedClientLink>
             ))}
           </nav>
-        </div>
+        </div> */}
 
         {/* About Column */}
         <div className="p-6 border rounded-sm">

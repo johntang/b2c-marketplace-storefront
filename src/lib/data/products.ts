@@ -79,9 +79,11 @@ export const listProducts = async ({
         ...queryParams,
       },
       headers: { ...headers, seller_id: seller_id ?? "" },
-      cache: "no-cache",
+      next: { revalidate: 30 },
     })
     .then(({ products: productsRaw, count }) => {
+      console.log(productsRaw);
+
       const products = productsRaw.filter(
         (product) => product.seller?.store_status !== "SUSPENDED"
       );

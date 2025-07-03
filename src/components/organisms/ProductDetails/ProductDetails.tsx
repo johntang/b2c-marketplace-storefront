@@ -45,10 +45,10 @@ export const ProductDetails = async ({
       {/* <ProductDetailsSellerReviews
         reviews={seller.reviews}
       /> */}
-      <ProductDetailsFooter
+      {/* <ProductDetailsFooter
         tags={product?.tags || []}
         posted={product?.created_at}
-      />
+      /> */}
     </div>
   );
 };

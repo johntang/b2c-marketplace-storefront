@@ -1,5 +1,5 @@
-import { SellerProps } from "@/types/seller"
-import { sdk } from "../config"
+import { SellerProps } from "@/types/seller";
+import { sdk } from "../config";
 
 export const getSellerByHandle = async (handle: string) => {
   return sdk.client
@@ -8,15 +8,16 @@ export const getSellerByHandle = async (handle: string) => {
         fields:
           "+created_at,+rating,+email,*reviews,*reviews.customer,+description,+ig,+facebook,+photo,+banner",
       },
-      cache: "force-cache",
+      next: { revalidate: 300 },
+      // cache: "force-cache",
     })
     .then(({ seller }) => {
       const response = {
         ...seller,
         reviews: seller.reviews?.filter((item) => item !== null) ?? [],
-      }
+      };
 
-      return response as SellerProps
+      return response as SellerProps;
     })
-    .catch(() => null)
-}
+    .catch(() => null);
+};
