@@ -1,28 +1,34 @@
-"use client"
+"use client";
 
-import { Heading, Text, useToggleState } from "@medusajs/ui"
-import { setAddresses } from "@/lib/data/cart"
-import compareAddresses from "@/lib/helpers/compare-addresses"
-import { HttpTypes } from "@medusajs/types"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useActionState, useEffect } from "react"
-import { Button } from "@/components/atoms"
-import ErrorMessage from "@/components/molecules/ErrorMessage/ErrorMessage"
-import Spinner from "@/icons/spinner"
-import ShippingAddress from "@/components/organisms/ShippingAddress/ShippingAddress"
-import { CheckCircleSolid } from "@medusajs/icons"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
+import { Heading, Text, useToggleState } from "@medusajs/ui";
+import { setAddresses } from "@/lib/data/cart";
+import compareAddresses from "@/lib/helpers/compare-addresses";
+import { HttpTypes } from "@medusajs/types";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+import { useActionState, useEffect } from "react";
+import { Button } from "@/components/atoms";
+import ErrorMessage from "@/components/molecules/ErrorMessage/ErrorMessage";
+import Spinner from "@/icons/spinner";
+import ShippingAddress from "@/components/organisms/ShippingAddress/ShippingAddress";
+import { CheckCircleSolid } from "@medusajs/icons";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
 
 export const CartAddressSection = ({
   cart,
   customer,
 }: {
-  cart: HttpTypes.StoreCart | null
-  customer: HttpTypes.StoreCustomer | null
+  cart: HttpTypes.StoreCart | null;
+  customer: HttpTypes.StoreCustomer | null;
 }) => {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const pathname = usePathname()
+  const searchParams = useSearchParams();
+  const params = useParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const isAddress = Boolean(
     cart?.shipping_address &&
@@ -32,26 +38,26 @@ export const CartAddressSection = ({
       cart?.shipping_address.city &&
       cart?.shipping_address.postal_code &&
       cart?.shipping_address.country_code
-  )
-  const isOpen = searchParams.get("step") === "address" || !isAddress
+  );
+  const isOpen = searchParams.get("step") === "address" || !isAddress;
 
   const { state: sameAsBilling, toggle: toggleSameAsBilling } = useToggleState(
     cart?.shipping_address && cart?.billing_address
       ? compareAddresses(cart?.shipping_address, cart?.billing_address)
       : true
-  )
+  );
 
-  const [message, formAction] = useActionState(setAddresses, sameAsBilling)
+  const [message, formAction] = useActionState(setAddresses, sameAsBilling);
 
   useEffect(() => {
     if (!isAddress) {
-      router.replace(pathname + "?step=address")
+      router.replace(pathname + "?step=address");
     }
-  }, [isAddress])
+  }, [isAddress]);
 
   const handleEdit = () => {
-    router.replace(pathname + "?step=address")
-  }
+    router.replace(pathname + "?step=address");
+  };
 
   return (
     <div className="border p-4 rounded-sm bg-ui-bg-interactive">
@@ -72,8 +78,8 @@ export const CartAddressSection = ({
       </div>
       <form
         action={async (data) => {
-          await formAction(data)
-          router.replace(`/checkout?step=delivery`)
+          await formAction(data);
+          router.replace(`/${params.locale}/checkout?step=delivery`);
         }}
       >
         {isOpen ? (
@@ -137,5 +143,5 @@ export const CartAddressSection = ({
         )}
       </form>
     </div>
-  )
-}
+  );
+};

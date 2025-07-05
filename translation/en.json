@@ -1,0 +1,13 @@
+{
+  "Category": {
+    "all-category-title": "所有商品"
+  },
+  "ProductListHeading": {
+    "item-count": "件商品"
+  },
+  "UserDropdown": {
+    "login": "登入",
+    "register": "註冊"
+  },
+  "LoginForm": { "title": "登入" }
+}

@@ -16,8 +16,6 @@ export const CartItemsProducts = ({
   delete_item?: boolean;
   change_quantity?: boolean;
 }) => {
-  console.log(products);
-
   return (
     <div>
       {products.map((product) => {

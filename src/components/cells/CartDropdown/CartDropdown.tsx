@@ -9,6 +9,7 @@ import { convertToLocale } from "@/lib/helpers/money";
 import { HttpTypes } from "@medusajs/types";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const getItemCount = (cart: HttpTypes.StoreCart | null) => {
   return cart?.items?.reduce((acc, item) => acc + item.quantity, 0) || 0;
@@ -20,6 +21,9 @@ export const CartDropdown = ({
   cart: HttpTypes.StoreCart | null;
 }) => {
   const [open, setOpen] = useState(false);
+
+  const t = useTranslations("CartDropdown");
+  const commonT = useTranslations("Common");
 
   const previousItemCount = usePrevious(getItemCount(cart));
   const cartItemsCount = (cart && getItemCount(cart)) || 0;
@@ -66,7 +70,9 @@ export const CartDropdown = ({
       </LocalizedClientLink>
       <Dropdown show={open}>
         <div className="lg:w-[560px] shadow-lg w-[300px]">
-          <h3 className="uppercase heading-md border-b p-4">購物車</h3>
+          <h3 className="uppercase heading-md border-b p-4">
+            {commonT("cart")}
+          </h3>
           <div className="p-4">
             {Boolean(cartItemsCount) ? (
               <div>
@@ -90,12 +96,16 @@ export const CartDropdown = ({
               </div>
             ) : (
               <div className="px-8">
-                <h4 className="heading-md uppercase text-center">未有購物車</h4>
-                <p className="text-lg text-center py-4">
+                <h4 className="heading-md uppercase text-center mb-4">
+                  {t("empty-cart")}
+                </h4>
+                {/* <p className="text-lg text-center py-4">
                   Are you looging for inspiration?
-                </p>
+                </p> */}
                 <LocalizedClientLink href="/categories">
-                  <Button className="w-full py-3">Explore Home Page</Button>
+                  <Button className="w-full py-3">
+                    {t("expore-homepage")}
+                  </Button>
                 </LocalizedClientLink>
               </div>
             )}

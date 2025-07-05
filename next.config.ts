@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
-// const { i18n } = require("./next-i18next.config");
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin();
 
 const withMDX = createMDX({});
 
@@ -66,4 +68,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-module.exports = withMDX(nextConfig);
+module.exports = withNextIntl(withMDX(nextConfig));

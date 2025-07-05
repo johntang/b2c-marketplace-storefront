@@ -1,18 +1,21 @@
-"use client"
+"use client";
 
-import { Divider, LogoutButton, NavigationItem } from "@/components/atoms"
-import { Dropdown } from "@/components/molecules"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { ProfileIcon } from "@/icons"
-import { HttpTypes } from "@medusajs/types"
-import { useState } from "react"
+import { Divider, LogoutButton, NavigationItem } from "@/components/atoms";
+import { Dropdown } from "@/components/molecules";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { ProfileIcon } from "@/icons";
+import { HttpTypes } from "@medusajs/types";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 export const UserDropdown = ({
   user,
 }: {
-  user: HttpTypes.StoreCustomer | null
+  user: HttpTypes.StoreCustomer | null;
 }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+
+  const t = useTranslations("UserDropdown");
 
   return (
     <div
@@ -42,11 +45,13 @@ export const UserDropdown = ({
           </div>
         ) : (
           <div className="p-1">
-            <NavigationItem href="/user">Login</NavigationItem>
-            <NavigationItem href="/user/register">Register</NavigationItem>
+            <NavigationItem href="/user">{t("login")}</NavigationItem>
+            <NavigationItem href="/user/register">
+              {t("register")}
+            </NavigationItem>
           </div>
         )}
       </Dropdown>
     </div>
-  )
-}
+  );
+};

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import tailwindConfig from "../../../../tailwind.config";
 import { ArrowRightIcon } from "@/icons";
 type HeroProps = {
-  image: string;
+  image?: string;
   heading: string;
   paragraph: string;
   buttons: { label: string; path: string }[];
@@ -14,13 +14,16 @@ type HeroProps = {
 export const Hero = ({ image, heading, paragraph, buttons }: HeroProps) => {
   return (
     <section className="w-full flex container mt-5 flex-col lg:flex-row text-primary gap-2">
-      {/* <Image
-        src={decodeURIComponent(image)}
-        width={700}
-        height={600}
-        alt="Hero"
-        className="w-full order-2 lg:order-1 object-contain"
-      /> */}
+      {!!image && (
+        <Image
+          src={decodeURIComponent(image)}
+          width={700}
+          height={600}
+          alt="Hero"
+          className="w-full order-2 lg:order-1 object-contain"
+        />
+      )}
+
       <div className="w-full lg:order-2 flex flex-col">
         <div className="border rounded-sm w-full px-6 flex items-end grow mb-2">
           <div>

@@ -12,7 +12,9 @@ export const CategoryNavbar = ({
   categories: HttpTypes.StoreProductCategory[];
   onClose?: (state: boolean) => void;
 }) => {
-  const { category } = useParams();
+  const { category }: { category: string } = useParams();
+
+  const decoddedCategory = decodeURIComponent(category ?? "");
 
   return (
     <nav className="flex md:items-center flex-col md:flex-row">
@@ -21,7 +23,9 @@ export const CategoryNavbar = ({
         onClick={() => (onClose ? onClose(false) : null)}
         className={cn(
           "label-md uppercase px-4 my-3 md:my-0 mx-1 flex items-center justify-between md:hover:border-b md:hover:border-primary",
-          !category && "md:border-b md:border-primary"
+          category !== undefined &&
+            !decoddedCategory &&
+            "md:border-b md:border-primary"
         )}
       >
         所有商品
@@ -33,7 +37,7 @@ export const CategoryNavbar = ({
           onClick={() => (onClose ? onClose(false) : null)}
           className={cn(
             "label-md uppercase px-4 mx-1 my-3 md:my-0 flex items-center justify-between md:hover:border-b md:hover:border-primary",
-            handle === category && "md:border-b md:border-primary"
+            handle === decoddedCategory && "md:border-b md:border-primary"
           )}
         >
           {name}

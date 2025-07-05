@@ -13,6 +13,7 @@ import { getSellerByHandle } from "@/lib/data/seller";
 import { SellerProps } from "@/types/seller";
 
 import type { Metadata, ResolvingMetadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -63,6 +64,8 @@ export default async function Home({
 
   let seller: SellerProps | null = null;
 
+  const t = await getTranslations("HomePage");
+
   if (SELLER_HANDLE) {
     seller = await getSellerByHandle(SELLER_HANDLE);
   }
@@ -70,7 +73,7 @@ export default async function Home({
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-primary">
       <Hero
-        image="https://cdn01.pinkoi.com/store/starryan/banner/1/1200x245.avif"
+        image={seller?.banner}
         heading={seller?.name ?? "Starryan"}
         paragraph={seller?.description ?? "Everyone can be a Shiny Star"}
         buttons={[
@@ -85,7 +88,7 @@ export default async function Home({
         ]}
       />
       <div className="px-4 lg:px-8 w-full">
-        <HomeProductSection heading="最近熱門" locale={locale} home />
+        <HomeProductSection heading={t("hotpick")} locale={locale} home />
       </div>
       {/* <HomePopularBrandsSection />*/}
       {/* <div className="px-4 lg:px-8 w-full">

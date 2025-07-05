@@ -46,8 +46,6 @@ export const ProductListing = async ({
 
   const { products, count } = await response;
 
-  console.log(products);
-
   const pages = Math.ceil(count / PRODUCT_LIMIT) || 1;
 
   return (

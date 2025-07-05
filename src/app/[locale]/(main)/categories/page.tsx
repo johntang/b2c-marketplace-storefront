@@ -1,32 +1,36 @@
-import { ProductListingSkeleton } from "@/components/organisms/ProductListingSkeleton/ProductListingSkeleton"
-import { Suspense } from "react"
+import { ProductListingSkeleton } from "@/components/organisms/ProductListingSkeleton/ProductListingSkeleton";
+import { Suspense } from "react";
 
-import { Breadcrumbs } from "@/components/atoms"
-import { AlgoliaProductsListing, ProductListing } from "@/components/sections"
-import { getRegion } from "@/lib/data/regions"
+import { Breadcrumbs } from "@/components/atoms";
+import { AlgoliaProductsListing, ProductListing } from "@/components/sections";
+import { getRegion } from "@/lib/data/regions";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID
-const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
+const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID;
+const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY;
 
 async function AllCategories({
   params,
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>
-  params: Promise<{ locale: string }>
+  searchParams: Promise<{ page: string }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params
+  const { locale } = await params;
 
-  const { page } = await searchParams
+  const { page } = await searchParams;
 
   const breadcrumbsItems = [
     {
       path: "/",
       label: "所有商品",
     },
-  ]
+  ];
 
-  const currency_code = (await getRegion(locale))?.currency_code || "hkd"
+  const currency_code = (await getRegion(locale))?.currency_code || "hkd";
+
+  const t = await getTranslations("Category");
 
   return (
     <main className="container">
@@ -34,7 +38,7 @@ async function AllCategories({
         <Breadcrumbs items={breadcrumbsItems} />
       </div>
 
-      <h1 className="heading-xl uppercase">所有商品</h1>
+      <h1 className="heading-xl uppercase">{t("all-category-title")}</h1>
 
       <Suspense fallback={<ProductListingSkeleton />}>
         {!ALGOLIA_ID || !ALGOLIA_SEARCH_KEY ? (
@@ -52,7 +56,7 @@ async function AllCategories({
         )}
       </Suspense>
     </main>
-  )
+  );
 }
 
-export default AllCategories
+export default AllCategories;

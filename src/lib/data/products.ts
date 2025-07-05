@@ -86,8 +86,6 @@ export const listProducts = async ({
         (product) => product.seller?.store_status !== "SUSPENDED"
       );
 
-      console.log(products);
-
       const nextPage = count > offset + limit ? pageParam + 1 : null;
 
       const response = products.filter((prod) => {

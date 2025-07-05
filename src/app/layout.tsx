@@ -6,6 +6,10 @@ import { SellerProps } from "@/types/seller";
 import { getSellerByHandle } from "@/lib/data/seller";
 import Script from "next/script";
 
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+
 const funnelDisplay = Funnel_Display({
   variable: "--font-funnel-sans",
   subsets: ["latin"],
@@ -72,6 +76,10 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+
+  // if (!hasLocale(routing.locales, locale)) {
+  //   notFound();
+  // }
   return (
     <html lang={locale} className="">
       <Script src="/assets/fontawesome/js/brands.js" defer />
@@ -80,7 +88,7 @@ export default async function RootLayout({
       <body
         className={`${funnelDisplay.className} antialiased bg-primary text-secondary`}
       >
-        {children}
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

@@ -1,0 +1,37 @@
+{
+  "Category": {
+    "all-category-title": "所有商品"
+  },
+  "ProductListHeading": {
+    "item-count": "件商品"
+  },
+  "UserDropdown": {
+    "login": "登入",
+    "register": "註冊"
+  },
+
+  "CartDropdown": {
+    "login": "登入",
+    "expore-homepage": "查看主頁",
+    "empty-cart": "未有購物車"
+  },
+  "LoginForm": {
+    "email-placeholder": "你的電郵",
+    "passwor-placeholder": "你的密碼",
+    "no-account": "未有account？"
+  },
+
+  "HomePage": {
+    "hotpick": "熱門商品"
+  },
+
+  "Common": {
+    "login": "登入",
+    "email": "電郵",
+    "password": "密碼",
+    "register": "註冊",
+    "gram": "克",
+    "weight": "重量",
+    "cart": "購物車"
+  }
+}

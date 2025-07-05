@@ -1,5 +1,4 @@
 import {
-  ProductDetailsFooter,
   ProductDetailsHeader,
   ProductDetailsMeasurements,
   ProductDetailsSeller,
@@ -10,6 +9,8 @@ import { getUserWishlists } from "@/lib/data/wishlist";
 import { SellerProps } from "@/types/seller";
 import { Wishlist } from "@/types/wishlist";
 import { HttpTypes } from "@medusajs/types";
+import { getTranslations } from "next-intl/server";
+import { useTranslations } from "use-intl";
 
 export const ProductDetails = async ({
   product,
@@ -26,6 +27,8 @@ export const ProductDetails = async ({
     wishlist = response.wishlists;
   }
 
+  const commonT = await getTranslations("Common");
+
   return (
     <div className="flex flex-col gap-2">
       <ProductDetailsHeader
@@ -38,7 +41,13 @@ export const ProductDetails = async ({
         <ProductPageDetails details={product?.description || ""} />
       </div> */}
       <ProductDetailsMeasurements
-        measurements={[{ label: "產地", value: product.origin_country ?? "" }]}
+        measurements={[
+          { label: "產地", value: product.origin_country ?? "" },
+          {
+            label: commonT("weight"),
+            value: `${product.weight ?? ""} ${commonT("gram")}`,
+          },
+        ]}
       />
       <ProductDetailsShipping />
       <ProductDetailsSeller seller={product?.seller} />

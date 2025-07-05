@@ -1,21 +1,21 @@
-import PaymentWrapper from "@/components/organisms/PaymentContainer/PaymentWrapper"
-import { CartAddressSection } from "@/components/sections/CartAddressSection/CartAddressSection"
-import CartPaymentSection from "@/components/sections/CartPaymentSection/CartPaymentSection"
-import CartReview from "@/components/sections/CartReview/CartReview"
+import PaymentWrapper from "@/components/organisms/PaymentContainer/PaymentWrapper";
+import { CartAddressSection } from "@/components/sections/CartAddressSection/CartAddressSection";
+import CartPaymentSection from "@/components/sections/CartPaymentSection/CartPaymentSection";
+import CartReview from "@/components/sections/CartReview/CartReview";
 
-import CartShippingMethodsSection from "@/components/sections/CartShippingMethodsSection/CartShippingMethodsSection"
-import { retrieveCart } from "@/lib/data/cart"
-import { retrieveCustomer } from "@/lib/data/customer"
-import { listCartShippingMethods } from "@/lib/data/fulfillment"
-import { listCartPaymentMethods } from "@/lib/data/payment"
-import { Metadata } from "next"
-import { notFound } from "next/navigation"
-import { Suspense } from "react"
+import CartShippingMethodsSection from "@/components/sections/CartShippingMethodsSection/CartShippingMethodsSection";
+import { retrieveCart } from "@/lib/data/cart";
+import { retrieveCustomer } from "@/lib/data/customer";
+import { listCartShippingMethods } from "@/lib/data/fulfillment";
+import { listCartPaymentMethods } from "@/lib/data/payment";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Checkout",
   description: "My cart page - Checkout",
-}
+};
 
 export default async function CheckoutPage({}) {
   return (
@@ -28,19 +28,21 @@ export default async function CheckoutPage({}) {
     >
       <CheckoutPageContent />
     </Suspense>
-  )
+  );
 }
 
 async function CheckoutPageContent({}) {
-  const cart = await retrieveCart()
+  const cart = await retrieveCart();
 
   if (!cart) {
-    return notFound()
+    return notFound();
   }
 
-  const shippingMethods = await listCartShippingMethods(cart.id)
-  const paymentMethods = await listCartPaymentMethods(cart.region?.id ?? "")
-  const customer = await retrieveCustomer()
+  const shippingMethods = await listCartShippingMethods(cart.id);
+  const paymentMethods = await listCartPaymentMethods(cart.region?.id ?? "");
+  const customer = await retrieveCustomer();
+
+  console.log(paymentMethods);
 
   return (
     <PaymentWrapper cart={cart}>
@@ -64,5 +66,5 @@ async function CheckoutPageContent({}) {
         </div>
       </main>
     </PaymentWrapper>
-  )
+  );
 }
