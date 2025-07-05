@@ -82,11 +82,11 @@ export const listProducts = async ({
       next: { revalidate: 30 },
     })
     .then(({ products: productsRaw, count }) => {
-      console.log(productsRaw);
-
       const products = productsRaw.filter(
         (product) => product.seller?.store_status !== "SUSPENDED"
       );
+
+      console.log(products);
 
       const nextPage = count > offset + limit ? pageParam + 1 : null;
 

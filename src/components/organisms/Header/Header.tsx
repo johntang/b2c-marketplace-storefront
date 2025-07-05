@@ -25,6 +25,7 @@ import { SellerProps } from "@/types/seller";
 
 export const Header = async () => {
   const cart = await retrieveCart().catch(() => null);
+
   const user = await retrieveCustomer();
   let wishlist: Wishlist[] = [];
   if (user) {

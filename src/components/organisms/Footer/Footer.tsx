@@ -11,8 +11,6 @@ export async function Footer() {
     seller = await getSellerByHandle(SELLER_HANDLE);
   }
 
-  console.log(seller);
-
   return (
     <footer className="bg-primary max-w-[1440px] mx-auto px-4 lg:px-8 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2 ">

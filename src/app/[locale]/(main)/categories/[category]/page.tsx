@@ -19,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { category } = await params;
 
-  const cat = await getCategoryByHandle([category]);
+  const cat = await getCategoryByHandle([decodeURIComponent(category)]);
 
   return generateCategoryMetadata(cat);
 }
@@ -38,7 +38,7 @@ async function Category({
 
   const { page } = await searchParams;
 
-  const category = await getCategoryByHandle([handle]);
+  const category = await getCategoryByHandle([decodeURIComponent(handle)]);
 
   if (!category) {
     return notFound();

@@ -1,9 +1,9 @@
-import Image from "next/image"
-import { HttpTypes } from "@medusajs/types"
-import { convertToLocale } from "@/lib/helpers/money"
-import { DeleteCartItemButton } from "@/components/molecules"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { UpdateCartItemButton } from "@/components/molecules/UpdateCartItemButton/UpdateCartItemButton"
+import Image from "next/image";
+import { HttpTypes } from "@medusajs/types";
+import { convertToLocale } from "@/lib/helpers/money";
+import { DeleteCartItemButton } from "@/components/molecules";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { UpdateCartItemButton } from "@/components/molecules/UpdateCartItemButton/UpdateCartItemButton";
 
 export const CartItemsProducts = ({
   products,
@@ -11,39 +11,41 @@ export const CartItemsProducts = ({
   delete_item = true,
   change_quantity = true,
 }: {
-  products: HttpTypes.StoreCartLineItem[]
-  currency_code: string
-  delete_item?: boolean
-  change_quantity?: boolean
+  products: HttpTypes.StoreCartLineItem[];
+  currency_code: string;
+  delete_item?: boolean;
+  change_quantity?: boolean;
 }) => {
+  console.log(products);
+
   return (
     <div>
       {products.map((product) => {
-        const { options } = product.variant ?? {}
+        const { options } = product.variant ?? {};
         const original_total = convertToLocale({
           amount: (product.compare_at_unit_price || 0) * product.quantity,
           currency_code,
-        })
+        });
 
         const total = convertToLocale({
           amount: product.total,
           currency_code,
-        })
+        });
 
         return (
           <div
             key={product.id}
-            className="border rounded-sm p-1 flex gap-2 mb-2"
+            className="border rounded-sm p-4 flex gap-2 mb-2"
           >
             <LocalizedClientLink href={`/products/${product.product_handle}`}>
-              <div className="w-[100px] h-[132px] flex items-center justify-center">
+              <div className="w-[100px] h-[100px] flex items-center justify-center">
                 {product.thumbnail ? (
                   <Image
                     src={decodeURIComponent(product.thumbnail)}
                     alt="Product thumbnail"
                     width={100}
-                    height={132}
-                    className="rounded-xs w-[100px] h-[132px] object-contain"
+                    height={100}
+                    className="rounded-xs w-[100px] h-[100px] object-contain"
                   />
                 ) : (
                   <Image
@@ -57,14 +59,14 @@ export const CartItemsProducts = ({
               </div>
             </LocalizedClientLink>
 
-            <div className="w-full p-2">
-              <div className="flex justify-between lg:mb-4">
+            <div className="w-full pl-2">
+              <div className="flex justify-between lg:mb-2 items-center">
                 <LocalizedClientLink
                   href={`/products/${product.product_handle}`}
                 >
                   <div className="w-[100px] md:w-[200px] lg:w-[280px] mb-4 lg:mb-0">
-                    <h3 className="heading-xs uppercase truncate">
-                      {product.subtitle}
+                    <h3 className="text-primary uppercase truncate font-bold">
+                      {product.product_title}
                     </h3>
                   </div>
                 </LocalizedClientLink>
@@ -94,6 +96,7 @@ export const CartItemsProducts = ({
                     </p>
                   )}
                 </div>
+
                 <div className="lg:text-right flex lg:block items-center gap-2 mt-4 lg:mt-0">
                   {product.compare_at_unit_price &&
                     total !== original_total && (
@@ -106,8 +109,8 @@ export const CartItemsProducts = ({
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};

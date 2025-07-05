@@ -4,12 +4,12 @@ import {
   ProductSidebar,
   ProductsList,
   ProductsPagination,
-} from "@/components/organisms"
-import { PRODUCT_LIMIT } from "@/const"
-import { SELLER_HANDLE } from "@/lib/config"
-import { listProductsWithSort } from "@/lib/data/products"
-import { getSellerByHandle } from "@/lib/data/seller"
-import { SellerProps } from "@/types/seller"
+} from "@/components/organisms";
+import { PRODUCT_LIMIT } from "@/const";
+import { SELLER_HANDLE } from "@/lib/config";
+import { listProductsWithSort } from "@/lib/data/products";
+import { getSellerByHandle } from "@/lib/data/seller";
+import { SellerProps } from "@/types/seller";
 
 export const ProductListing = async ({
   category_id,
@@ -19,17 +19,17 @@ export const ProductListing = async ({
   locale = process.env.NEXT_PUBLIC_DEFAULT_REGION || "pl",
   page,
 }: {
-  category_id?: string
-  collection_id?: string
-  seller_id?: string
-  showSidebar?: boolean
-  locale?: string
-  page?: number
+  category_id?: string;
+  collection_id?: string;
+  seller_id?: string;
+  showSidebar?: boolean;
+  locale?: string;
+  page?: number;
 }) => {
-  let seller: SellerProps | null = null
+  let seller: SellerProps | null = null;
 
   if (SELLER_HANDLE) {
-    seller = await getSellerByHandle(SELLER_HANDLE)
+    seller = await getSellerByHandle(SELLER_HANDLE);
   }
 
   const { response } = await listProductsWithSort({
@@ -42,11 +42,13 @@ export const ProductListing = async ({
       limit: PRODUCT_LIMIT,
     },
     page: page,
-  })
+  });
 
-  const { products, count } = await response
+  const { products, count } = await response;
 
-  const pages = Math.ceil(count / PRODUCT_LIMIT) || 1
+  console.log(products);
+
+  const pages = Math.ceil(count / PRODUCT_LIMIT) || 1;
 
   return (
     <div className="py-4">
@@ -64,5 +66,5 @@ export const ProductListing = async ({
         </section>
       </div>
     </div>
-  )
-}
+  );
+};
