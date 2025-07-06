@@ -7,13 +7,15 @@ import { SingleProductMeasurement } from "@/types/product";
 export const ProductDetailsMeasurements = ({
   measurements,
 }: {
-  measurements: SingleProductMeasurement[];
+  measurements: (SingleProductMeasurement | null)[];
 }) => {
   return (
     <ProductPageAccordion heading="商品資訊" defaultOpen={false}>
-      {measurements.map((item) => (
-        <ProdutMeasurementRow key={item.label} measurement={item} />
-      ))}
+      {measurements
+        .filter((item) => !!item)
+        .map((item) => (
+          <ProdutMeasurementRow key={item.label} measurement={item} />
+        ))}
     </ProductPageAccordion>
   );
 };

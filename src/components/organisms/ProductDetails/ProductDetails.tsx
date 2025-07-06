@@ -42,11 +42,15 @@ export const ProductDetails = async ({
       </div> */}
       <ProductDetailsMeasurements
         measurements={[
-          { label: "產地", value: product.origin_country ?? "" },
-          {
-            label: commonT("weight"),
-            value: `${product.weight ?? ""} ${commonT("gram")}`,
-          },
+          !!product.origin_country
+            ? { label: "產地", value: product.origin_country ?? "" }
+            : null,
+          !!product.weight
+            ? {
+                label: commonT("weight"),
+                value: `${product.weight ?? ""} ${commonT("gram")}`,
+              }
+            : null,
         ]}
       />
       <ProductDetailsShipping />

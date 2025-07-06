@@ -17,6 +17,8 @@ export const ProductDetailsPage = async ({
     queryParams: { handle },
   }).then(({ response }) => response.products[0]);
 
+  console.log(prod);
+
   if (!prod) return null;
 
   if (SELLER_HANDLE && SELLER_HANDLE !== prod.seller?.handle) {
