@@ -461,8 +461,7 @@ export async function listCartOptions() {
     shipping_options: HttpTypes.StoreCartShippingOption[];
   }>("/store/shipping-options", {
     query: { cart_id: cartId },
-    next,
+    next: { ...next, revalidate: 3600 },
     headers,
-    cache: "force-cache",
   });
 }

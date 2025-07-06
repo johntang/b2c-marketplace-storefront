@@ -64,9 +64,9 @@ export const CartAddressSection = ({
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"
-          className="flex flex-row text-3xl-regular gap-x-2 items-baseline items-center"
+          className="flex flex-row text-3xl-regular gap-x-2 items-center"
         >
-          {!isOpen && <CheckCircleSolid />} 寄件地址
+          {!isOpen && <CheckCircleSolid />} 送貨地址
         </Heading>
         {!isOpen && isAddress && (
           <Text>

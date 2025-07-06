@@ -1,13 +1,14 @@
-import React from "react"
-import { CreditCard } from "@medusajs/icons"
+import React from "react";
+import { CreditCard } from "@medusajs/icons";
 
 /* Map of payment provider_id to their title and icon. Add in any payment providers you want to use. */
 export const paymentInfoMap: Record<
   string,
   { title: string; icon: React.JSX.Element }
 > = {
+  "pp_card_stripe-connect": { title: "信用卡", icon: <CreditCard /> },
   pp_stripe_stripe: {
-    title: "Credit card",
+    title: "信用卡",
     icon: <CreditCard />,
   },
   "pp_stripe-ideal_stripe": {
@@ -27,18 +28,18 @@ export const paymentInfoMap: Record<
     icon: <CreditCard />,
   },
   // Add more payment providers here
-}
+};
 
 // This only checks if it is native stripe for card payments, it ignores the other stripe-based providers
 export const isStripe = (providerId?: string) => {
-  return providerId?.startsWith("pp_card_stripe-connect")
-}
+  return providerId?.startsWith("pp_card_stripe-connect");
+};
 export const isPaypal = (providerId?: string) => {
-  return providerId?.startsWith("pp_paypal")
-}
+  return providerId?.startsWith("pp_paypal");
+};
 export const isManual = (providerId?: string) => {
-  return providerId?.startsWith("pp_system_default")
-}
+  return providerId?.startsWith("pp_system_default");
+};
 
 // Add currencies that don't need to be divided by 100
 export const noDivisionCurrencies = [
@@ -61,4 +62,4 @@ export const noDivisionCurrencies = [
   "xag",
   "xdr",
   "xau",
-]
+];
