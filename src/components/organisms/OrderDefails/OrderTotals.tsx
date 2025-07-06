@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { convertToLocale } from "@/lib/helpers/money"
-import React from "react"
+import { convertToLocale } from "@/lib/helpers/money";
+import React from "react";
 
 type CartTotalsProps = {
   totals: {
-    item_total?: number | null
-    total?: number | null
-    shipping_total?: number | null
-    gift_card_total?: number | null
-    currency_code: string
-    shipping_subtotal?: number | null
-  }
-}
+    item_total?: number | null;
+    total?: number | null;
+    shipping_total?: number | null;
+    gift_card_total?: number | null;
+    currency_code: string;
+    shipping_subtotal?: number | null;
+  };
+};
 
 const OrderTotals: React.FC<CartTotalsProps> = ({ totals }) => {
   const {
@@ -21,7 +21,7 @@ const OrderTotals: React.FC<CartTotalsProps> = ({ totals }) => {
     total,
     gift_card_total,
     shipping_subtotal,
-  } = totals
+  } = totals;
 
   return (
     <div className="border rounded-sm p-4 bg-white">
@@ -33,7 +33,7 @@ const OrderTotals: React.FC<CartTotalsProps> = ({ totals }) => {
           </span>
         </div>
         <div className="flex items-center justify-between">
-          <span>Delivery</span>
+          <span>運費</span>
           <span data-testid="cart-shipping" data-value={shipping_subtotal || 0}>
             {convertToLocale({ amount: shipping_subtotal ?? 0, currency_code })}
           </span>
@@ -64,7 +64,7 @@ const OrderTotals: React.FC<CartTotalsProps> = ({ totals }) => {
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderTotals
+export default OrderTotals;
