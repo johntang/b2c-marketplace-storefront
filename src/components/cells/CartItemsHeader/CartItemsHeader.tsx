@@ -1,14 +1,17 @@
-import { Divider } from "@/components/atoms"
-import { SingleProductSeller } from "@/types/product"
-import { format } from "date-fns"
-import { SellerAvatar } from "../SellerAvatar/SellerAvatar"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
+import { Divider } from "@/components/atoms";
+import { SingleProductSeller } from "@/types/product";
+import { format } from "date-fns";
+import { SellerAvatar } from "../SellerAvatar/SellerAvatar";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { useTranslations } from "next-intl";
+import useCommonTranslation from "@/hooks/useCommonTranslation";
 
 export const CartItemsHeader = ({
   seller,
 }: {
-  seller: SingleProductSeller
+  seller: SingleProductSeller;
 }) => {
+  const commonT = useCommonTranslation();
   return (
     <LocalizedClientLink href={`/sellers/${seller.handle}`}>
       <div className="border rounded-sm p-4 flex gap-4 items-center mb-2">
@@ -20,12 +23,13 @@ export const CartItemsHeader = ({
             <div className="flex items-center gap-2">
               <Divider square />
               <p className="label-md text-secondary">
-                Joined: {format(seller.created_at || "", "yyyy-MM-dd")}
+                {commonT("joined")}:{" "}
+                {format(seller.created_at || "", "yyyy-MM-dd")}
               </p>
             </div>
           )}
         </div>
       </div>
     </LocalizedClientLink>
-  )
-}
+  );
+};

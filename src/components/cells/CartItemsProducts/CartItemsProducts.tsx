@@ -58,14 +58,14 @@ export const CartItemsProducts = ({
             </LocalizedClientLink>
 
             <div className="w-full pl-2">
-              <div className="flex justify-between lg:mb-2 items-center">
+              <div className="flex justify-between lg:mb-2 items-center mb-4">
                 <LocalizedClientLink
                   href={`/products/${product.product_handle}`}
                 >
-                  <div className="w-[100px] md:w-[200px] lg:w-[280px] mb-4 lg:mb-0">
-                    <h3 className="text-primary uppercase truncate font-bold">
+                  <div className="w-[100px] md:w-[200px] lg:w-[280px] lg:mb-0">
+                    <p className="text-primary uppercase truncate font-bold m-0">
                       {product.product_title}
-                    </h3>
+                    </p>
                   </div>
                 </LocalizedClientLink>
                 {delete_item && (
@@ -74,7 +74,7 @@ export const CartItemsProducts = ({
                   </div>
                 )}
               </div>
-              <div className="lg:flex justify-between -mt-4 lg:mt-0">
+              <div className="flex justify-between items-end -mt-4 lg:mt-0">
                 <div className="label-md text-secondary">
                   {options?.map(({ option, id, value }) => (
                     <p key={id}>

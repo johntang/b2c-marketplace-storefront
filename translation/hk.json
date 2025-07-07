@@ -25,13 +25,23 @@
     "hotpick": "熱門商品"
   },
 
+  "RegisterPage": {
+    "title": "加入我們",
+    "haveAnAccount": "已經有賬號？"
+  },
+
   "Common": {
     "login": "登入",
     "email": "電郵",
     "password": "密碼",
+    "confirmPassword": "確認密碼",
     "register": "註冊",
     "gram": "克",
     "weight": "重量",
-    "cart": "購物車"
+    "cart": "購物車",
+    "joined": "加入",
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "phone": "電話"
   }
 }

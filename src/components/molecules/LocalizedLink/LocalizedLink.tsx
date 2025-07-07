@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
 import React, { MouseEventHandler } from "react";
 
@@ -22,11 +22,7 @@ const LocalizedClientLink = ({
 }) => {
   const { locale } = useParams();
 
-  return (
-    <Link href={`/${locale}${href}`} {...props}>
-      {children}
-    </Link>
-  );
+  return Link;
 };
 
-export default LocalizedClientLink;
+export default Link;

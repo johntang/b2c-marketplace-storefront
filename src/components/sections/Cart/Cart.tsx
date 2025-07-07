@@ -1,18 +1,17 @@
-import { Button } from "@/components/atoms"
-import { CartItems, CartSummary } from "@/components/organisms"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { retrieveCart } from "@/lib/data/cart"
-import CartPromotionCode from "../CartReview/CartPromotionCode"
+import { Button } from "@/components/atoms";
+import { CartItems, CartSummary } from "@/components/organisms";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { retrieveCart } from "@/lib/data/cart";
+import CartPromotionCode from "../CartReview/CartPromotionCode";
 
 export const Cart = async () => {
-  const cart = await retrieveCart()
+  const cart = await retrieveCart();
 
   return (
     <>
-      <div className="col-span-12 lg:col-span-6">
+      <div className="col-span-12 lg:col-span-8">
         <CartItems cart={cart} />
       </div>
-      <div className="lg:col-span-2"></div>
       <div className="col-span-12 lg:col-span-4">
         <div className="w-full mb-2 border rounded-sm p-4">
           <CartPromotionCode cart={cart} />
@@ -33,5 +32,5 @@ export const Cart = async () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
