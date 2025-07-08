@@ -17,7 +17,7 @@ export const listCategories = async ({
       product_categories: HttpTypes.StoreProductCategory[];
     }>("/store/product-categories", {
       query: {
-        fields: "handle, name, rank",
+        fields: "handle, name, rank, parent_category, *category_children",
         limit,
         ...query,
       },

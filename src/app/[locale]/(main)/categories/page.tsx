@@ -6,6 +6,9 @@ import { AlgoliaProductsListing, ProductListing } from "@/components/sections";
 import { getRegion } from "@/lib/data/regions";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import SellerHero from "@/components/molecules/SellerHero/SellerHero";
+import { getSellerByHandle } from "@/lib/data/seller";
+import { SELLER_HANDLE } from "@/lib/config";
 
 const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID;
 const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY;
@@ -32,13 +35,20 @@ async function AllCategories({
 
   const t = await getTranslations("Category");
 
+  let seller;
+
+  if (SELLER_HANDLE) {
+    seller = await getSellerByHandle(SELLER_HANDLE);
+  }
+
   return (
     <main className="container">
+      {!!seller && <SellerHero sellerInfo={seller} />}
       <div className="hidden md:block mb-2">
         <Breadcrumbs items={breadcrumbsItems} />
       </div>
 
-      <h1 className="heading-xl uppercase">{t("all-category-title")}</h1>
+      <h1 className="heading-lg uppercase">{t("all-category-title")}</h1>
 
       <Suspense fallback={<ProductListingSkeleton />}>
         {!ALGOLIA_ID || !ALGOLIA_SEARCH_KEY ? (

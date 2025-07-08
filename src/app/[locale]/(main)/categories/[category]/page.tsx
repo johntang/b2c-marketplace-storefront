@@ -8,6 +8,9 @@ import { Breadcrumbs } from "@/components/atoms";
 import { AlgoliaProductsListing, ProductListing } from "@/components/sections";
 import { notFound } from "next/navigation";
 import NotFound from "@/app/not-found";
+import { SELLER_HANDLE } from "@/lib/config";
+import { getSellerByHandle } from "@/lib/data/seller";
+import SellerHero from "@/components/molecules/SellerHero/SellerHero";
 
 const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID;
 const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY;
@@ -46,25 +49,36 @@ async function Category({
 
   const breadcrumbsItems = [
     {
+      path: "/categories",
+      label: "所有商品",
+    },
+    {
       path: category?.handle,
       label: category?.name,
     },
   ];
 
+  let seller;
+
+  if (SELLER_HANDLE) {
+    seller = await getSellerByHandle(SELLER_HANDLE);
+  }
+
   return (
     <main className="container">
+      {!!seller && <SellerHero sellerInfo={seller} />}
       <div className="hidden md:block mb-2">
         <Breadcrumbs items={breadcrumbsItems} />
       </div>
 
-      <h1 className="heading-xl uppercase">{category.name}</h1>
+      <h1 className="heading-lg uppercase">{category.name}</h1>
 
       <Suspense fallback={<ProductListingSkeleton />}>
         {!ALGOLIA_ID || !ALGOLIA_SEARCH_KEY ? (
           <ProductListing
             page={page ? parseInt(page) : 1}
             category_id={category.id}
-            // showSidebar
+            locale={locale}
           />
         ) : (
           <AlgoliaProductsListing category_id={category.id} locale={locale} />

@@ -6,6 +6,7 @@ export const Navbar = ({
 }: {
   categories: HttpTypes.StoreProductCategory[];
 }) => {
+  console.log(categories);
   return (
     <div className="border py-0 px-6">
       <div className="hidden md:flex max-w-[1440px] mx-auto justify-between min-h-16">

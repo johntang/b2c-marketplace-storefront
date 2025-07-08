@@ -3,7 +3,6 @@ import { SingleProductSeller } from "@/types/product";
 import { format } from "date-fns";
 import { SellerAvatar } from "../SellerAvatar/SellerAvatar";
 import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
-import { useTranslations } from "next-intl";
 import useCommonTranslation from "@/hooks/useCommonTranslation";
 
 export const CartItemsHeader = ({
@@ -14,7 +13,7 @@ export const CartItemsHeader = ({
   const commonT = useCommonTranslation();
   return (
     <LocalizedClientLink href={`/sellers/${seller.handle}`}>
-      <div className="border rounded-sm p-4 flex gap-4 items-center mb-2">
+      <div className="border rounded-sm p-4 flex gap-4 items-center mb-3">
         <SellerAvatar photo={seller.photo} size={32} alt={seller.name} />
 
         <div className="lg:flex gap-2">

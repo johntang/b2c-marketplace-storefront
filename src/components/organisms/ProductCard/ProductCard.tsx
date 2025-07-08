@@ -74,12 +74,12 @@ export const ProductCard = ({
   return (
     <div
       className={clsx(
-        "relative group border rounded-sm flex flex-col justify-between p-1 w-full min-w-[100px]"
+        "relative group border rounded-sm flex flex-col justify-between p-0 w-full min-w-[100px]"
       )}
     >
       <div className="relative w-full h-full bg-primary aspect-square">
         <LocalizedClientLink href={`/products/${product.handle}`}>
-          <div className="overflow-hidden rounded-sm w-full h-full flex justify-center align-center ">
+          <div className="overflow-hidden rounded-sm w-full h-full flex justify-center align-center">
             {product.thumbnail ? (
               <Image
                 src={decodeURIComponent(product.thumbnail)}

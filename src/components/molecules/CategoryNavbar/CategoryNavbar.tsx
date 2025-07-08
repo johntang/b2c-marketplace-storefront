@@ -16,6 +16,8 @@ export const CategoryNavbar = ({
 
   const decoddedCategory = decodeURIComponent(category ?? "");
 
+  console.log(categories);
+
   return (
     <nav className="flex md:items-center flex-col md:flex-row">
       <LocalizedClientLink
