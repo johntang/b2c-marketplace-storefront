@@ -6,6 +6,8 @@ import { SellerProps } from "@/types/seller";
 import { getSellerByHandle } from "@/lib/data/seller";
 import Script from "next/script";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -95,6 +97,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
+      <GoogleAnalytics gaId="G-J0SH8M9ZRX" />
     </html>
   );
 }
