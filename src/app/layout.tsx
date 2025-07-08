@@ -82,6 +82,11 @@ export default async function RootLayout({
   // }
   return (
     <html lang={locale} className="">
+      <meta
+        name="google-site-verification"
+        content="zdftSZVyPppYF210kqs-N8N4iWYMt0c6qcZYYToO-FQ"
+      />
+
       <Script src="/assets/fontawesome/js/brands.js" defer />
       <Script defer src="/assets/fontawesome/js/solid.js"></Script>
       <Script defer src="/assets/fontawesome/js/fontawesome.js"></Script>
