@@ -1,8 +1,8 @@
-import { ProductPageAccordion } from "@/components/molecules"
+import { ProductPageAccordion } from "@/components/molecules";
 
 export const ProductPageDetails = ({ details }: { details: string }) => {
   return (
-    <ProductPageAccordion heading="商品介紹" defaultOpen={false}>
+    <ProductPageAccordion heading="商品介紹" defaultOpen={true}>
       <div
         className="product-details whitespace-pre-line"
         dangerouslySetInnerHTML={{
@@ -10,5 +10,5 @@ export const ProductPageDetails = ({ details }: { details: string }) => {
         }}
       />
     </ProductPageAccordion>
-  )
-}
+  );
+};

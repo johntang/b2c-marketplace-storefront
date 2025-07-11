@@ -23,7 +23,7 @@ export const SellerFooter = ({ seller }: { seller: SellerProps }) => {
         )} */}
         <Divider square />
         <p>
-          {commonT("joinedd")} {format(seller.created_at, "yyyy-MM-dd")}
+          {commonT("joined")} {format(seller.created_at, "yyyy-MM-dd")}
         </p>
         {/* <Divider square /> */}
         {/* <p>sold {seller.sold}</p> */}

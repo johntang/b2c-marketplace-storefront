@@ -97,9 +97,12 @@ export const ProductDetailsHeader = ({
           <h2 className="label-md text-secondary">
             {/* {product?.brand || "No brand"} */}
           </h2>
-          <h1 className="heading-lg text-primary">{product.title}</h1>
+          <h1 className="heading-lg text-primary" style={{ fontSize: 20 }}>
+            {product.title}
+          </h1>
           <div className="my-2 flex gap-2 items-center">
             <span
+              style={{ fontSize: 20 }}
               className={`heading-md text-primary ${
                 variantPrice?.calculated_price_number !==
                 variantPrice?.original_price_number

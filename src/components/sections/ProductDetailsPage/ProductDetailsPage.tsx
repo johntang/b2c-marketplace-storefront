@@ -3,7 +3,13 @@ import { listProducts } from "@/lib/data/products";
 import { HomeProductSection } from "../HomeProductSection/HomeProductSection";
 import { SELLER_HANDLE } from "@/lib/config";
 import { notFound } from "next/navigation";
-import { ProductPageDetails } from "@/components/cells";
+import {
+  ProductDetailsMeasurements,
+  ProductDetailsSeller,
+  ProductDetailsShipping,
+  ProductPageDetails,
+} from "@/components/cells";
+import { getTranslations } from "next-intl/server";
 
 export const ProductDetailsPage = async ({
   handle,
@@ -18,6 +24,8 @@ export const ProductDetailsPage = async ({
   }).then(({ response }) => response.products[0]);
 
   console.log(prod);
+
+  const commonT = await getTranslations("Common");
 
   if (!prod) return null;
 
@@ -34,12 +42,28 @@ export const ProductDetailsPage = async ({
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 md:px-2 lg:w-3/5">
           <ProductGallery images={prod?.images || []} />
-          <div className="mb-2">
-            <ProductPageDetails details={prod?.description || ""} />
-          </div>
+          <div className="mb-2"></div>
         </div>
         <div className="md:w-1/2 md:px-2 lg:w-2/5">
           <ProductDetails product={prod} locale={locale} />
+
+          <ProductPageDetails details={prod?.description || ""} />
+
+          <ProductDetailsMeasurements
+            measurements={[
+              !!prod.origin_country
+                ? { label: "產地", value: prod.origin_country ?? "" }
+                : null,
+              !!prod.weight
+                ? {
+                    label: commonT("weight"),
+                    value: `${prod.weight ?? ""} ${commonT("gram")}`,
+                  }
+                : null,
+            ]}
+          />
+          <ProductDetailsShipping />
+          <ProductDetailsSeller seller={prod?.seller} />
         </div>
       </div>
       <div className="my-8">

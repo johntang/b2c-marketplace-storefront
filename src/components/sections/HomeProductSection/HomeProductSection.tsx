@@ -1,10 +1,10 @@
-import { HomeProductsCarousel } from "@/components/organisms"
-import { AlgoliaProductsCarousel } from "@/components/organisms/HomeProductsCarousel/AlgoliaProductsCarousel"
-import { getRegion } from "@/lib/data/regions"
-import { Product } from "@/types/product"
+import { HomeProductsCarousel } from "@/components/organisms";
+import { AlgoliaProductsCarousel } from "@/components/organisms/HomeProductsCarousel/AlgoliaProductsCarousel";
+import { getRegion } from "@/lib/data/regions";
+import { Product } from "@/types/product";
 
-const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID
-const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
+const ALGOLIA_ID = process.env.NEXT_PUBLIC_ALGOLIA_ID;
+const ALGOLIA_SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY;
 
 export const HomeProductSection = async ({
   heading,
@@ -13,13 +13,13 @@ export const HomeProductSection = async ({
   home = false,
   seller_handle,
 }: {
-  heading: string
-  locale?: string
-  products?: Product[]
-  home?: boolean
-  seller_handle?: string
+  heading: string;
+  locale?: string;
+  products?: Product[];
+  home?: boolean;
+  seller_handle?: string;
 }) => {
-  const currency_code = (await getRegion(locale))?.currency_code || "usd"
+  const currency_code = (await getRegion(locale))?.currency_code || "usd";
 
   return (
     <section className="py-8 w-full">
@@ -29,7 +29,7 @@ export const HomeProductSection = async ({
       {!ALGOLIA_ID || !ALGOLIA_SEARCH_KEY ? (
         <HomeProductsCarousel
           locale={locale}
-          sellerProducts={products.slice(0, 4)}
+          sellerProducts={products.slice(0, 6)}
           sellerHandle={seller_handle}
           home={home}
         />
@@ -41,5 +41,5 @@ export const HomeProductSection = async ({
         />
       )}
     </section>
-  )
-}
+  );
+};

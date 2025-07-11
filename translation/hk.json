@@ -22,7 +22,8 @@
   },
 
   "HomePage": {
-    "hotpick": "熱門商品"
+    "hotpick": "熱門商品",
+    "latest": "最新上架"
   },
 
   "RegisterPage": {
@@ -39,7 +40,7 @@
     "gram": "克",
     "weight": "重量",
     "cart": "購物車",
-    "joined": "加入",
+    "joined": "加入日期",
     "firstName": "名字",
     "lastName": "姓氏",
     "phone": "電話"

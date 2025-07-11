@@ -30,7 +30,7 @@ export const ProductDetails = async ({
   const commonT = await getTranslations("Common");
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 mb-2">
       <ProductDetailsHeader
         product={product}
         locale={locale}
@@ -40,21 +40,7 @@ export const ProductDetails = async ({
       {/* <div className="visible md:collasp">
         <ProductPageDetails details={product?.description || ""} />
       </div> */}
-      <ProductDetailsMeasurements
-        measurements={[
-          !!product.origin_country
-            ? { label: "產地", value: product.origin_country ?? "" }
-            : null,
-          !!product.weight
-            ? {
-                label: commonT("weight"),
-                value: `${product.weight ?? ""} ${commonT("gram")}`,
-              }
-            : null,
-        ]}
-      />
-      <ProductDetailsShipping />
-      <ProductDetailsSeller seller={product?.seller} />
+
       {/* <ProductDetailsSellerReviews
         reviews={seller.reviews}
       /> */}
