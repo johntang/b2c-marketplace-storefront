@@ -1,3 +1,4 @@
+import TopicSwiper from "@/components/organisms/TopicSwiper";
 import {
   AlgoliaTrendingListings,
   BannerSection,
@@ -10,6 +11,7 @@ import {
 } from "@/components/sections";
 import { SELLER_HANDLE } from "@/lib/config";
 import { getSellerByHandle } from "@/lib/data/seller";
+import { getTopics } from "@/lib/data/topic";
 import { SellerProps } from "@/types/seller";
 
 import type { Metadata, ResolvingMetadata } from "next";
@@ -66,12 +68,20 @@ export default async function Home({
 
   const t = await getTranslations("HomePage");
 
+  const topics = await getTopics();
+
   if (SELLER_HANDLE) {
     seller = await getSellerByHandle(SELLER_HANDLE);
   }
 
   return (
-    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-primary">
+    <main className="flex flex-col gap-4 row-start-2 items-center sm:items-start text-primary">
+      {!!topics && (
+        <div className="w-full">
+          <TopicSwiper topics={topics} />
+        </div>
+      )}
+
       <Hero
         image={seller?.banner}
         heading={seller?.name ?? "Starryan"}

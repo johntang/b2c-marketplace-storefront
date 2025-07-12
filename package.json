@@ -40,6 +40,7 @@
     "react-i18next": "^15.5.3",
     "react-instantsearch": "^7.15.3",
     "react-instantsearch-nextjs": "^0.4.4",
+    "swiper": "^11.2.10",
     "tailwind-merge": "^2.6.0",
     "talkjs": "^0.37.0",
     "uuid": "^11.0.5",
