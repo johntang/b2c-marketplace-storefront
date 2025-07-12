@@ -8,8 +8,7 @@ export const getTopics = async () => {
       query: {
         fields: "+id,+name,+image",
       },
-      //   next: { revalidate: 300 },
-      cache: "no-cache",
+      next: { revalidate: 600 },
     })
     .then(({ topics }) => {
       return topics;

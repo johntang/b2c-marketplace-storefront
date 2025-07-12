@@ -9,8 +9,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { TopicProps } from "@/types/topic";
+import { memo } from "react";
 
-export default ({ topics }: { topics: TopicProps[] }) => {
+const TopicSwiper = ({ topics }: { topics: TopicProps[] }) => {
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y]}
@@ -22,7 +23,7 @@ export default ({ topics }: { topics: TopicProps[] }) => {
       autoplay={{ delay: 2500 }}
     >
       {topics.map((item, idx) => (
-        <SwiperSlide>
+        <SwiperSlide key={item.id}>
           {({ isActive }) => (
             <img
               src={item.image}
@@ -37,3 +38,5 @@ export default ({ topics }: { topics: TopicProps[] }) => {
     </Swiper>
   );
 };
+
+export default memo(TopicSwiper);
