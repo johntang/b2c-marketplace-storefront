@@ -23,10 +23,9 @@ export const ProductDetailsPage = async ({
     queryParams: { handle },
   }).then(({ response }) => response.products[0]);
 
-  console.log(prod);
-
   const commonT = await getTranslations("Common");
 
+  console.log(prod);
   if (!prod) return null;
 
   if (SELLER_HANDLE && SELLER_HANDLE !== prod.seller?.handle) {
@@ -60,6 +59,10 @@ export const ProductDetailsPage = async ({
                     value: `${prod.weight ?? ""} ${commonT("gram")}`,
                   }
                 : null,
+              ...prod.attribute_values.map((attr) => ({
+                label: commonT(attr.attribute?.name ?? ""),
+                value: attr.value,
+              })),
             ]}
           />
           <ProductDetailsShipping />

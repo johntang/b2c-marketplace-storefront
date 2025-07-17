@@ -10,7 +10,6 @@ import { SellerProps } from "@/types/seller";
 import { Wishlist } from "@/types/wishlist";
 import { HttpTypes } from "@medusajs/types";
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "use-intl";
 
 export const ProductDetails = async ({
   product,
@@ -26,8 +25,6 @@ export const ProductDetails = async ({
     const response = await getUserWishlists();
     wishlist = response.wishlists;
   }
-
-  const commonT = await getTranslations("Common");
 
   return (
     <div className="flex flex-col gap-2 mb-2">

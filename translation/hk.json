@@ -43,6 +43,7 @@
     "joined": "加入日期",
     "firstName": "名字",
     "lastName": "姓氏",
-    "phone": "電話"
+    "phone": "電話",
+    "material": "材質"
   }
 }

@@ -7,6 +7,7 @@ import { SortOptions } from "@/types/product";
 import { getAuthHeaders } from "./cookies";
 import { getRegion, retrieveRegion } from "./regions";
 import { SellerProps } from "@/types/seller";
+import { AttributeValueProps } from "@/types/attributes";
 
 export const listProducts = async ({
   pageParam = 1,
@@ -29,7 +30,9 @@ export const listProducts = async ({
   seller_id?: string;
 }): Promise<{
   response: {
-    products: (HttpTypes.StoreProduct & { seller?: SellerProps })[];
+    products: (HttpTypes.StoreProduct & { seller?: SellerProps } & {
+      attribute_values: AttributeValueProps[];
+    })[];
     count: number;
   };
   nextPage: number | null;
@@ -64,7 +67,9 @@ export const listProducts = async ({
 
   return sdk.client
     .fetch<{
-      products: (HttpTypes.StoreProduct & { seller?: SellerProps })[];
+      products: (HttpTypes.StoreProduct & { seller?: SellerProps } & {
+        attribute_values: AttributeValueProps[];
+      })[];
       count: number;
     }>(`/store/products`, {
       method: "GET",
@@ -75,7 +80,7 @@ export const listProducts = async ({
         offset,
         region_id: region?.id,
         fields:
-          "*variants.calculated_price,+variants.inventory_quantity,*seller,*variants,*seller.products,*seller.reviews,*seller.reviews.customer",
+          "*variants.calculated_price,+variants.inventory_quantity,*seller,*variants,*seller.products,*seller.reviews,*seller.reviews.customer,+attribute_values.*,+attribute_values.attribute.*",
         ...queryParams,
       },
       headers: { ...headers, seller_id: seller_id ?? "" },
