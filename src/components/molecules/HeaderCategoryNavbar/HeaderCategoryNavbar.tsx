@@ -1,15 +1,15 @@
-"use client"
-import { HttpTypes } from "@medusajs/types"
-import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/atoms"
+"use client";
+import { HttpTypes } from "@medusajs/types";
+import LocalizedClientLink from "@/components/molecules/LocalizedLink/LocalizedLink";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/atoms";
 
 export const HeaderCategoryNavbar = ({
   categories,
   onClose,
 }: {
-  categories: HttpTypes.StoreProductCategory[]
-  onClose?: (state: boolean) => void
+  categories: HttpTypes.StoreProductCategory[];
+  onClose?: (state: boolean) => void;
 }) => {
   return (
     <nav className="flex items-center flex-col p-1 gap-1">
@@ -24,5 +24,5 @@ export const HeaderCategoryNavbar = ({
         </LocalizedClientLink>
       ))}
     </nav>
-  )
-}
+  );
+};

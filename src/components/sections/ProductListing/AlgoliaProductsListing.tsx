@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
 import {
   AlgoliaProductSidebar,
   ProductCard,
   ProductListingActiveFilters,
   ProductsPagination,
-} from "@/components/organisms"
-import { client } from "@/lib/client"
-import { Configure, useHits } from "react-instantsearch"
-import { InstantSearchNext } from "react-instantsearch-nextjs"
-import { useSearchParams } from "next/navigation"
-import { getFacedFilters } from "@/lib/helpers/get-faced-filters"
-import useUpdateSearchParams from "@/hooks/useUpdateSearchParams"
-import { PRODUCT_LIMIT } from "@/const"
-import { ProductListingSkeleton } from "@/components/organisms/ProductListingSkeleton/ProductListingSkeleton"
+} from "@/components/organisms";
+import { client } from "@/lib/client";
+import { Configure, useHits } from "react-instantsearch";
+import { InstantSearchNext } from "react-instantsearch-nextjs";
+import { useSearchParams } from "next/navigation";
+import { getFacedFilters } from "@/lib/helpers/get-faced-filters";
+import useUpdateSearchParams from "@/hooks/useUpdateSearchParams";
+import { PRODUCT_LIMIT } from "@/const";
+import { ProductListingSkeleton } from "@/components/organisms/ProductListingSkeleton/ProductListingSkeleton";
 
 export const AlgoliaProductsListing = ({
   category_id,
@@ -21,18 +21,20 @@ export const AlgoliaProductsListing = ({
   seller_handle,
   locale = process.env.NEXT_PUBLIC_DEFAULT_REGION,
   currency_code,
+  latest,
 }: {
-  category_id?: string
-  collection_id?: string
-  locale?: string
-  seller_handle?: string
-  currency_code?: string
+  category_id?: string;
+  collection_id?: string;
+  locale?: string;
+  seller_handle?: string;
+  currency_code?: string;
+  latest?: boolean;
 }) => {
-  const searchParamas = useSearchParams()
+  const searchParamas = useSearchParams();
 
-  const facetFilters: string = getFacedFilters(searchParamas)
-  const page: number = +(searchParamas.get("page") || 1)
-  const query: string = searchParamas.get("query") || ""
+  const facetFilters: string = getFacedFilters(searchParamas);
+  const page: number = +(searchParamas.get("page") || 1);
+  const query: string = searchParamas.get("query") || "";
 
   const filters = `${
     seller_handle
@@ -46,7 +48,7 @@ export const AlgoliaProductsListing = ({
             : ""
         } ${facetFilters}`
       : ` ${facetFilters}`
-  }`
+  }`;
 
   return (
     <InstantSearchNext searchClient={client} indexName="products">
@@ -58,22 +60,22 @@ export const AlgoliaProductsListing = ({
       />
       <ProductsListing currency_code={currency_code} />
     </InstantSearchNext>
-  )
-}
+  );
+};
 
 const ProductsListing = ({ currency_code }: { currency_code?: string }) => {
   const {
     items,
     results,
     // sendEvent,
-  } = useHits()
-  const updateSearchParams = useUpdateSearchParams()
+  } = useHits();
+  const updateSearchParams = useUpdateSearchParams();
 
   const selectOptionHandler = (value: string) => {
-    updateSearchParams("sortBy", value)
-  }
+    updateSearchParams("sortBy", value);
+  };
 
-  if (!results?.processingTimeMS) return <ProductListingSkeleton />
+  if (!results?.processingTimeMS) return <ProductListingSkeleton />;
 
   return (
     <>
@@ -120,5 +122,5 @@ const ProductsListing = ({ currency_code }: { currency_code?: string }) => {
       </div>
       <ProductsPagination pages={results?.nbPages || 1} />
     </>
-  )
-}
+  );
+};

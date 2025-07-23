@@ -31,6 +31,7 @@ export const CategoryNavbar = ({
         )}
       >
         所有商品
+        <CollapseIcon size={18} className="-rotate-90 md:hidden" />
       </LocalizedClientLink>
       {categories?.map(({ id, handle, name }) => (
         <LocalizedClientLink
@@ -46,6 +47,20 @@ export const CategoryNavbar = ({
           <CollapseIcon size={18} className="-rotate-90 md:hidden" />
         </LocalizedClientLink>
       ))}
+
+      <LocalizedClientLink
+        href="/categories/latest"
+        onClick={() => (onClose ? onClose(false) : null)}
+        className={cn(
+          "label-md uppercase px-4 my-3 md:my-0 mx-1 flex items-center justify-between md:hover:border-b md:hover:border-primary",
+          category !== undefined &&
+            !decoddedCategory &&
+            "md:border-b md:border-primary"
+        )}
+      >
+        最新商品
+        <CollapseIcon size={18} className="-rotate-90 md:hidden" />
+      </LocalizedClientLink>
     </nav>
   );
 };

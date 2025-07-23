@@ -15,6 +15,7 @@ export const ProductListing = async ({
   category_id,
   collection_id,
   seller_id,
+  latest,
   showSidebar = false,
   locale = process.env.NEXT_PUBLIC_DEFAULT_REGION || "pl",
   page,
@@ -22,6 +23,7 @@ export const ProductListing = async ({
   category_id?: string;
   collection_id?: string;
   seller_id?: string;
+  latest?: boolean;
   showSidebar?: boolean;
   locale?: string;
   page?: number;
@@ -32,15 +34,25 @@ export const ProductListing = async ({
     seller = await getSellerByHandle(SELLER_HANDLE);
   }
 
+  const queryParams: { limit: number; created_at?: { $gt: Date } } = {
+    limit: PRODUCT_LIMIT,
+  };
+
+  // @ts-ignore
+  if (latest) {
+    queryParams.created_at = {
+      $gt: new Date(new Date().getTime() - 86400 * 30 * 1000),
+    };
+  }
+
   const { response } = await listProductsWithSort({
     seller_id: seller?.id ?? seller_id,
     category_id,
+    latest,
     collection_id,
     countryCode: locale,
     sortBy: "created_at",
-    queryParams: {
-      limit: PRODUCT_LIMIT,
-    },
+    queryParams: queryParams,
     page: page,
   });
 

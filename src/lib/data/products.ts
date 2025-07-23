@@ -132,6 +132,7 @@ export const listProductsWithSort = async ({
   category_id,
   seller_id,
   collection_id,
+  latest,
 }: {
   page?: number;
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams;
@@ -140,6 +141,7 @@ export const listProductsWithSort = async ({
   category_id?: string;
   seller_id?: string;
   collection_id?: string;
+  latest?: boolean;
 }): Promise<{
   response: {
     products: HttpTypes.StoreProduct[];
@@ -157,6 +159,7 @@ export const listProductsWithSort = async ({
     queryParams: {
       ...queryParams,
       limit: 12,
+      order: "-created_at",
     },
     category_id,
     collection_id,
