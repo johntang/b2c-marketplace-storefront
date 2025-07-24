@@ -51,7 +51,6 @@ const TopicSwiper = ({ topics }: { topics: TopicProps[] }) => {
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={30}
         centeredSlides={true}
-        // navigation
         loop
         pagination={{ clickable: true }}
         autoplay={{ delay: 2500 }}

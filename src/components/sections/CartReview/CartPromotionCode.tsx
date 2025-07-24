@@ -1,31 +1,31 @@
-"use client"
-import { HttpTypes } from "@medusajs/types"
-import { Button, Input } from "@/components/atoms"
-import { Heading, Label } from "@medusajs/ui"
-import { useState } from "react"
-import { applyPromotions } from "@/lib/data/cart"
+"use client";
+import { HttpTypes } from "@medusajs/types";
+import { Button, Input } from "@/components/atoms";
+import { Heading, Label } from "@medusajs/ui";
+import { useState } from "react";
+import { applyPromotions } from "@/lib/data/cart";
 
 export default function CartPromotionCode({
   cart,
 }: {
   cart:
     | (HttpTypes.StoreCart & { promotions?: HttpTypes.StorePromotion[] })
-    | null
+    | null;
 }) {
-  const [promotionCode, setPromotionCode] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [promotionCode, setPromotionCode] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleApplyPromotionCode = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await applyPromotions([promotionCode])
-      setPromotionCode("")
+      await applyPromotions([promotionCode]);
+      setPromotionCode("");
     } catch (err) {
-      console.log(err)
+      console.log(err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -38,10 +38,10 @@ export default function CartPromotionCode({
       <div>
         {cart?.promotions?.map((promo) => (
           <div
-            key={promo.id}
+            key={promo?.id}
             className="mb-4 flex flex-row gap-x-2 items-center"
           >
-            <Label className="text-md">{promo.code}</Label>
+            <Label className="text-md">{promo?.code}</Label>
           </div>
         ))}
       </div>
@@ -62,5 +62,5 @@ export default function CartPromotionCode({
         </Button>
       </div>
     </div>
-  )
+  );
 }
