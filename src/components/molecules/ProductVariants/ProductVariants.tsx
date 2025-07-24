@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { HttpTypes } from "@medusajs/types"
+import { HttpTypes } from "@medusajs/types";
 
-import { Chip } from "@/components/atoms"
-import useUpdateSearchParams from "@/hooks/useUpdateSearchParams"
-import { BaseHit, Hit } from "instantsearch.js"
+import { Chip } from "@/components/atoms";
+import useUpdateSearchParams from "@/hooks/useUpdateSearchParams";
+import { BaseHit, Hit } from "instantsearch.js";
 
 export const ProductVariants = ({
   product,
   selectedVariant,
 }: {
-  product: HttpTypes.StoreProduct
-  selectedVariant: Record<string, string>
+  product: HttpTypes.StoreProduct;
+  selectedVariant: Record<string, string>;
 }) => {
-  const updateSearchParams = useUpdateSearchParams()
+  const updateSearchParams = useUpdateSearchParams();
 
   // update the options when a variant is selected
   const setOptionValue = (optionId: string, value: string) => {
-    if (value) updateSearchParams(optionId, value)
-  }
+    if (value) updateSearchParams(optionId, value);
+  };
 
   return (
     <div className="my-4 space-y-2">
@@ -29,7 +29,7 @@ export const ProductVariants = ({
             <span className="label-md text-primary">
               {selectedVariant[title.toLowerCase()]}
             </span>
-            <div className="flex gap-2 mt-2">
+            <div className="flex gap-2 mt-2 flex-wrap">
               {(values || []).map(
                 ({
                   id,
@@ -51,5 +51,5 @@ export const ProductVariants = ({
         )
       )}
     </div>
-  )
-}
+  );
+};
