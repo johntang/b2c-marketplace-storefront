@@ -14,7 +14,21 @@ export const Cart = async () => {
       </div>
       <div className="col-span-12 lg:col-span-4">
         <div className="w-full mb-2 border rounded-sm p-4">
-          <CartPromotionCode cart={cart} />
+          <CartPromotionCode
+            cart={
+              cart
+                ? {
+                    ...cart,
+                    promotions: cart.promotions?.map((promotion: any) => ({
+                      ...promotion,
+                      created_at: promotion.created_at ?? "",
+                      updated_at: promotion.updated_at ?? "",
+                      deleted_at: promotion.deleted_at ?? null,
+                    })),
+                  }
+                : null
+            }
+          />
         </div>
         <div className="border rounded-sm p-4 h-fit">
           <CartSummary
