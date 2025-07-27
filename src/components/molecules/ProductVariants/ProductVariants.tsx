@@ -15,15 +15,17 @@ export const ProductVariants = ({
 }) => {
   const updateSearchParams = useUpdateSearchParams();
 
+  console.log(product);
+
   // update the options when a variant is selected
   const setOptionValue = (optionId: string, value: string) => {
-    if (value) updateSearchParams(optionId, value);
+    if (value) updateSearchParams(optionId, value, true);
   };
 
   return (
     <div className="my-4 space-y-2">
       {(product.options || []).map(
-        ({ id, title, values }: HttpTypes.StoreProductOption) => (
+        ({ id, title, values, metadata }: HttpTypes.StoreProductOption) => (
           <div key={id}>
             <span className="label-md text-secondary">{title}: </span>
             <span className="label-md text-primary">
@@ -40,6 +42,8 @@ export const ProductVariants = ({
                     selected={selectedVariant[title.toLowerCase()] === value}
                     color={title === "Color"}
                     value={value}
+                    // @ts-ignore
+                    metadata={metadata}
                     onSelect={() =>
                       setOptionValue(title.toLowerCase(), value || "")
                     }

@@ -52,6 +52,8 @@ export const ProductCarousel = ({
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  console.log(currentIndex);
+
   return (
     <div className="relative">
       <Swiper
@@ -61,7 +63,7 @@ export const ProductCarousel = ({
         onSlideChange={(e) => setCurrentIndex(e.activeIndex)}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
-        {(slides || []).map((slide, index) => (
+        {(slides || []).map((slide) => (
           <SwiperSlide key={slide.id}>
             <Image
               src={decodeURIComponent(slide.url)}
@@ -77,7 +79,7 @@ export const ProductCarousel = ({
 
       {(slides ?? []).length > 1 && (
         <>
-          {0 === currentIndex && <PrevButton swiperRef={swiperRef} />}
+          {currentIndex !== 0 && <PrevButton swiperRef={swiperRef} />}
           {(slides ?? []).length - 1 !== currentIndex && (
             <NextButton swiperRef={swiperRef} />
           )}

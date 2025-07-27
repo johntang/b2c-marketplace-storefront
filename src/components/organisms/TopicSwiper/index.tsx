@@ -62,7 +62,7 @@ const TopicSwiper = ({ topics }: { topics: TopicProps[] }) => {
               <img
                 src={item.image}
                 //   width={"100%"}
-                className={`aspect-video object-cover ${
+                className={`w-full aspect-video object-cover ${
                   isActive ? "" : "grayscale"
                 }`}
               />
