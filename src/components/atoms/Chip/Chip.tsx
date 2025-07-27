@@ -30,7 +30,7 @@ export function Chip({
     ? "bg-component border-disabled/50 hover:bg-component cursor-not-allowed text-disabled"
     : "cursor-pointer";
   const colorClasses = color ? "w-[40px] h-[40px] border" : "";
-  const colorCode = color && metadata?.[value as string].color;
+  const colorCode = color && metadata?.[value as string]?.color;
 
   return (
     <div
